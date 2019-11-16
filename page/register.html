@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BrainHive</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -53,95 +53,47 @@
     <nav class="scripted-menu" ref="navBar" v-show="show" v-click-outside="clickedOutside">
         <ul class="menu-list" ref="menu-stuff" tabindex="1">
             <li>
-                <a href="index.html">Home</a>
+                <a href="../index.html">Home</a>
             </li>
             <li>
-                <a href="page/product.html">Products</a>
+                <a href="product.html">Products</a>
             </li>
         </ul>
     </nav>
 
 
-    <main class="main-without-aside">
-        <div id="image-holder">
-            <p id="homepage-title">Unlock Your <br>&nbsp&nbsp&nbsp&nbsp&nbsp Full Potential</p>
-        </div>
+    <main class="main-without-aside not-index-main">
 
-        <div id="medal-case">
+        <div class="form-holder">
+            <form class="user-account-form" id="register-form" action="#">
 
-            <medal medal-text1="95% Student" empty-space="3" medal-text2="Pass Rate"></medal>
-
-            <medal medal-text1="Highly Qualified" empty-space="7" medal-text2="Teachers"></medal>
-
-            <medal medal-text1="95% Student" empty-space="3" medal-text2="Pass Rate"></medal>
-
-        </div>
-
-        <div id="courses-we-offer">
-            <p id="courses-homepage-title">Our Courses</p>
-
-            <div id="homepage-courses">
-                <courses-badge subject="Math"></courses-badge>
-                <courses-badge subject="English"></courses-badge>
-                <courses-badge subject="Science"></courses-badge>
-                <courses-badge subject="Music"></courses-badge>
-                <courses-badge subject="Activities"></courses-badge>
-            </div>
-        </div>
-
-        <p id=reviews-heading>Reviews</p>
-
-        <div id="reviews">
-            <div class="review-box">
-                <div class="review-content">
-                    <div class="review-image">
-                        <img src="image/female-avatar.png" alt="female avatar">
+                <h1 class="form-heading">Register</h1>
+                <div class="input-holder">
+                    <div class="form-items">
+                        <label for="username-register">Username</label>
+                        <input type="text" id="username-register" placeholder="Username">
                     </div>
 
-                    <div class="review-text">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    <div class="form-items">
+                        <label for="password-register">Password</label>
+                        <input type="password" id="password-register" placeholder="Password">
                     </div>
 
-                    <div class="review-name">
-                        Kathy-&nbsp;&nbsp;
+                    <div class="form-items">
+                        <label for="retype-password-register">Retype Password</label>
+                        <input type="password" id="retype-password-register" placeholder="Password">
+                    </div>
+
+                    <div class="form-items">
+                        <label for="email-register">Email</label>
+                        <input type="email" id="email-register" placeholder="Email">
                     </div>
                 </div>
-            </div>
-
-            <div class="review-box">
-                <div class="review-content">
-                    <div class="review-image">
-                        <img src="image/female-avatar.png" alt="female avatar">
-                    </div>
-
-                    <div class="review-text">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-
-                    <div class="review-name">
-                        Susan-&nbsp;&nbsp;
-                    </div>
-                </div>
-            </div>
-
-            <div class="review-box">
-                <div class="review-content">
-                    <div class="review-image">
-                        <img src="image/male-avatar.png" alt="female avatar">
-                    </div>
-
-                    <div class="review-text">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-
-                    <div class="review-name">
-                        Matthew-&nbsp;&nbsp;
-                    </div>
-                </div>
-            </div>
-
-
+                <button type=submit>Submit</button>
+            </form>
         </div>
+
+
     </main>
 
     <footer>
@@ -152,6 +104,5 @@
 
 </html>
 
-<script src="./js/component-templates.js"></script>
-<script type="module" src="./js/style-script.js"></script>
-<script src="./js/script.js"></script>
+<script type="module" src="../js/style-script.js"></script>
+<script src="../js/script.js"></script>
