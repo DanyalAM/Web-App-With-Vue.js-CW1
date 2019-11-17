@@ -65,32 +65,72 @@
     <main class="main-without-aside not-index-main">
 
         <div class="form-holder">
-            <form class="user-account-form" id="register-form" action="#">
+            <form class="user-account-form" id="register-form" @submit="checkForm" action="login.html"
+                novalidate="true">
 
                 <h1 class="form-heading">Register</h1>
+
+
                 <div class="input-holder">
                     <div class="form-items">
-                        <label for="username-register">Username</label>
-                        <input type="text" id="username-register" placeholder="Username">
+                        <label for="name-register">Name</label>
+                        <input type="text" id="name-register" placeholder="Name" v-model="registerInfo.name">
                     </div>
+                    <p class="form-errors" v-show="nameError">{{nameErrorText}}</p>
 
                     <div class="form-items">
                         <label for="password-register">Password</label>
-                        <input type="password" id="password-register" placeholder="Password">
+                        <input type="password" id="password-register" placeholder="Password" v-model="registerInfo.password">
                     </div>
+                    <p class="form-errors" v-show="passwordError">{{passwordErrorText}}</p>
 
                     <div class="form-items">
                         <label for="retype-password-register">Retype Password</label>
-                        <input type="password" id="retype-password-register" placeholder="Password">
+                        <input type="password" id="retype-password-register" placeholder="Password"
+                            v-model="passwordAgain">
                     </div>
+                    <p class="form-errors" v-show="passwordAgainError">{{passwordAgainErrorText}}</p>
 
                     <div class="form-items">
                         <label for="email-register">Email</label>
-                        <input type="email" id="email-register" placeholder="Email">
+                        <input type="email" id="email-register" placeholder="Email" v-model="registerInfo.email">
                     </div>
+                    <p class="form-errors" v-show="emailError">{{emailErrorText}}</p>
+
+                    <div class="form-items">
+                        <label for="select-box">User Type</label>
+                        <select v-model="registerInfo.userType" id="select-box">
+                            <option disabled value="">Select User Type</option>
+                            <option value="1">Student/Parent</option>
+                            <option value="2">Serivce Provider</option>
+                        </select>
+                    </div>
+                    <p class="form-errors" v-show="userTypeError">{{userTypeErrorText}}</p>
+
                 </div>
                 <button type=submit>Submit</button>
             </form>
+
+            <div class="password-error-holder" v-show="passwordWrong">
+                <div class="error-message-box-heading">
+                    <i class="fa fa-exclamation-triangle danger-sign"></i>
+                    Incorrect Password!
+                </div>
+
+                <div class="triangle"></div>
+
+                <div class="error-message-box">
+                    <p>Your password must contain at least...</p>
+
+                    <div class="password-requirements">
+                        <ul>
+                            <li v-for="reqs in requirements">
+                                {{reqs}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
