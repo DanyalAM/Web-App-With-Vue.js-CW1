@@ -12,9 +12,33 @@ if (localStorage.getItem('servicesProvided') === null) {
     localStorage.setItem('servicesProvided', JSON.stringify(services));
 }
 
+//Check if just registered storage exists
+if (localStorage.getItem('justRegistered') !== null) {
+
+    //if it exists then save the registration time
+    var registerTime = localStorage.getItem('justRegistered');
+    var oneMinute = 1000 * 60; //one minute
+
+    //if the register time was more than a minute ago
+    //delete the registeration storage item
+    if (minuteChecker(registerTime, oneMinute)) {
+        localStorage.removeItem('justRegistered');
+    }
+}
+
+
+//if a minute has passed from the old time then return true
+function minuteChecker(oldTime, timeDifference) {
+    var minutePassed = true;
+    if (new Date().getTime() - oldTime < timeDifference) {
+        minutePassed = false;
+    }
+    return minutePassed;
+}
+
+
 
 var userAccounts = JSON.parse(localStorage.getItem('userInfo'));
-
 
 //Registration validation
 var registerForm = new Vue({
@@ -124,6 +148,10 @@ var registerForm = new Vue({
             if (this.allCorrect.length == 5) {
                 userAccounts.push(this.registerInfo);
                 localStorage.setItem('userInfo', JSON.stringify(userAccounts));
+
+                var justRegistered = (new Date()).getTime();
+                localStorage.setItem('justRegistered', justRegistered);
+
                 e.submit();
             }
 
@@ -148,7 +176,7 @@ var registerForm = new Vue({
             });
             return found;
         }
-    }
+    },
 })
 
 //Custom error box that appears
@@ -160,3 +188,84 @@ var errorMessageBox = new Vue({
         requirements: ["one digit", "one lowercase", "one uppercase", "be 8 characters long"]
     }
 })
+
+
+//Login Validation
+var loginForm = new Vue({
+    el: '#login-form',
+    data: {
+        registrationSuccess: false,
+        loginEmail: null,
+        loginPassword: null,
+        incorrectInfo: false,
+
+        emailErrorText: "",
+        emailError: false,
+        passwordErrorText: "",
+        passwordError: false
+    },
+    mounted() {
+        //on page load do this
+        this.newlyRegistered();
+    },
+    methods: {
+        checkLogin: function (e) {
+            if (!this.loginEmail) {
+                this.emailErrorText = "Please enter your email";
+                this.emailError = true;
+                this.incorrectInfo = false;
+            } else if (!registerForm.validEmail(this.loginEmail)) {
+                //if email doesn't match the regex definition
+                this.emailErrorText = "Please enter a valid email";
+                this.emailError = true;
+                this.incorrectInfo = false;
+            } else {
+                this.emailErrorText = "";
+                this.emailError = false;
+                this.incorrectInfo = false;
+            }
+
+            if (!this.loginPassword) {
+                this.passwordErrorText = "Please enter your password";
+                this.passwordError = true;
+                this.incorrectInfo = false;
+            } else {
+                this.passwordErrorText = "";
+                this.passwordError = false;
+                this.incorrectInfo = false;
+            }
+
+            //if both email and password are entered
+            if (this.loginPassword && this.loginEmail) {
+                if (!this.checkCredentials(this.loginEmail, this.loginPassword)) {
+                    this.incorrectInfo = true;
+                }else{
+                    this.incorrectInfo = false;
+                    localStorage.setItem('currentUser', JSON.stringify(this.loginEmail));
+                    e.submit();
+                }
+            }
+
+            e.preventDefault();
+        },
+        newlyRegistered: function () {
+            if (localStorage.getItem("justRegistered") !== null) {
+                this.registrationSuccess = true;
+            }
+        },
+        checkCredentials: function (email, password) {
+            var success = false;
+            var found = userAccounts.find(element => element.email == email);
+
+            if (found != undefined) {
+                if (found.password == password) {
+                    success = true;
+                }
+            }
+
+            return success;
+        }
+    }
+})
+
+

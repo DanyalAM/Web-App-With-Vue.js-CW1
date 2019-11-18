@@ -63,22 +63,29 @@
 
 
     <main class="main-without-aside not-index-main">
-
         <div class="form-holder">
-            <form class="user-account-form" id="login-form" action="#">
+            
+            <form class="user-account-form" id="login-form" action="../index.html" @submit="checkLogin" novalidate="true">
+
+                <p class="registration-success" v-show="registrationSuccess">You've successfully been registered</p>
+
+                <p class="registration-success" v-show="incorrectInfo">Your credentials do not match</p>
+
 
                 <h1 class="form-heading">Login</h1>
                 <div class="input-holder">
 
                     <div class="form-items">
-                        <label for="username-login">Username</label>
-                        <input type="text" id="username-login" placeholder="Username">
+                        <label for="email-login">Email</label>
+                        <input type="text" id="email-login" placeholder="Email" v-model="loginEmail">
                     </div>
+                    <p class="form-errors" v-show="emailError">{{emailErrorText}}</p>
 
                     <div class="form-items">
                         <label for="password-login">Password</label>
-                        <input type="password" id="password-login" placeholder="Password">
+                        <input type="password" id="password-login" placeholder="Password" v-model="loginPassword">
                     </div>
+                    <p class="form-errors" v-show="passwordError">{{passwordErrorText}}</p>
 
 
                 </div>
