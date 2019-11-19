@@ -80,7 +80,8 @@
 
                     <div class="form-items">
                         <label for="password-register">Password</label>
-                        <input type="password" id="password-register" placeholder="Password" v-model="registerInfo.password">
+                        <input type="password" id="password-register" placeholder="Password"
+                            v-model="registerInfo.password">
                     </div>
                     <p class="form-errors" v-show="passwordError">{{passwordErrorText}}</p>
 
@@ -100,7 +101,7 @@
                     <div class="form-items">
                         <label for="select-box">User Type</label>
                         <select v-model="registerInfo.userType" id="select-box">
-                            <option disabled value="">Select User Type</option>
+                            <option selected disabled value="">Select User Type</option>
                             <option value="1">Student/Parent</option>
                             <option value="2">Serivce Provider</option>
                         </select>
@@ -110,6 +111,7 @@
                 </div>
                 <button type=submit>Submit</button>
             </form>
+              
 
             <div class="password-error-holder" v-show="passwordWrong">
                 <div class="error-message-box-heading">
@@ -140,9 +142,9 @@
         Footer
     </footer>
 
+    <script src="../js/style-script.js"></script>
+    <script src="../js/script.js"></script>
+
 </body>
 
 </html>
-
-<script type="module" src="../js/style-script.js"></script>
-<script src="../js/script.js"></script>

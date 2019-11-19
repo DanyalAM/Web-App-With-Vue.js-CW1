@@ -36,7 +36,7 @@ body {
     min-height: 100vh;
     display: grid;
     margin: 0;
-    grid-template-columns: 10% auto;
+    grid-template-columns: 1fr 8fr;
     grid-template-rows: auto auto 1fr auto;
     /* _ */
 }
@@ -214,15 +214,28 @@ nav ul li:hover::after {
 
 /* Aside Content */
 
+#filter-heading {
+    color: black;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+}
+
+.filter-topics {
+    color: black;
+    font-size: 18px;
+}
+
 aside {
     padding: 10px;
+    color: white;
     border: 1px solid black;
     grid-column: 1;
     grid-row: 3;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     margin-right: 20px;
     margin-top: 20px;
+    min-width: 200px;
 
 }
 
@@ -233,11 +246,67 @@ aside ul {
 }
 
 aside ul li {
+    background: var(--logo-color);
     margin: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #969696;
     border-radius: 10px;
+}
 
+.checkbox{
+    float: right;
+}
+
+
+
+#slider-heading {
+    padding-bottom: 15px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    height: 25px;
+    background: #969696;
+    outline: none;
+    border-radius: 5px;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+    width: 10px;
+    height: 25px;
+    background: var(--logo-color);
+    cursor: pointer;
+}
+
+#slider-value {
+    color: black;
+}
+
+#slider-pricing {
+    margin: 20px;
+    margin-top: 0px;
+}
+
+.price-range {
+    color: black;
+}
+
+.price-range:nth-child(1) {
+    float: left;
+}
+
+.price-range:nth-child(2) {
+    float: right;
 }
 
 /* Main Content */
@@ -266,7 +335,7 @@ aside ul li {
     display: grid;
     justify-content: right;
     align-items: center;
-    background: url(/image/pencils-yellowbg.jpg);
+    background: url(../image/pencils-yellowbg.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
@@ -666,11 +735,9 @@ pre {
 }
 
 .form-items {
-    /* height: 70px; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background: red; */
 }
 
 .form-items>select {
@@ -805,9 +872,66 @@ pre {
 }
 
 
-.registration-success{
+.registration-success {
     color: #B6AF5F;
     text-align: center;
+}
+
+/* Product Sorting */
+
+.sorting-holder {
+    padding: 10px;
+}
+
+/* Products Holder */
+#totalProductsFound {
+    padding: 10px;
+}
+
+.totalCourses {
+    padding: 10px;
+}
+
+.product {
+    padding: 10px;
+    display: inline-block;
+    width: 250px;
+}
+
+.product .productImage {
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 0.6rem;
+}
+
+.productImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.product .productName {
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 0.2rem;
+}
+
+.product .productPrice {
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 0.2rem;
+}
+
+.product .productLocation {
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 0.2rem;
+    height: 60px;
+}
+
+.product .productRating {
+    border: 1px solid black;
+    padding: 0.2rem;
 }
 
 /* Footer */

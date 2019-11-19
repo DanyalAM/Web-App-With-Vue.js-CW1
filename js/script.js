@@ -239,7 +239,7 @@ var loginForm = new Vue({
             if (this.loginPassword && this.loginEmail) {
                 if (!this.checkCredentials(this.loginEmail, this.loginPassword)) {
                     this.incorrectInfo = true;
-                }else{
+                } else {
                     this.incorrectInfo = false;
                     localStorage.setItem('currentUser', JSON.stringify(this.loginEmail));
                     e.submit();
@@ -268,4 +268,232 @@ var loginForm = new Vue({
     }
 })
 
+
+// Products Page
+var ourProducts = new Vue({
+    el: '.products',
+    mounted() {
+        //on page load do this
+        this.displayedProducts;
+    },
+    data: function () {
+        return {
+            course:
+                [
+                    { 'Topic': 'Math', 'Location': 'Hendon', 'Price': 100 },
+                    { 'Topic': 'Math', 'Location': 'Colindale', 'Price': 80 },
+                    { 'Topic': 'Math', 'Location': 'Brent Cross', 'Price': 90 },
+                    { 'Topic': 'Math', 'Location': 'Golders Green', 'Price': 120 },
+                    { 'Topic': 'English', 'Location': 'Hendon', 'Price': 110 },
+                    { 'Topic': 'English', 'Location': 'Colindale', 'Price': 90 },
+                    { 'Topic': 'English', 'Location': 'Brent Cross', 'Price': 90 },
+                    { 'Topic': 'English', 'Location': 'Golders Green', 'Price': 130 },
+                    { 'Topic': 'Piano', 'Location': 'Hendon', 'Price': 120 },
+                    { 'Topic': 'Piano', 'Location': 'Golders Green', 'Price': 140 },
+                ],
+            productsToDisplay: [],
+        }
+    },
+    computed: {
+        displayedProducts: function () {
+            this.productsToDisplay = this.course;
+        }
+    }
+});
+
+
+var asideMenu = new Vue({
+    el: '#aside',
+    data: {
+        location: [],
+        topic: [],
+        price: [],
+        locationsExist: false,
+        topicsExist: false,
+        pricesExist: false,
+        locationApplied: false,
+        topicApplied: false,
+        sliderValue: 50,
+        locationFilterValue: [],
+        topicFilterValue: [],
+        filterValue: [],
+        onlyTopicAR: [],
+        onlyLocationAR: [],
+    },
+    mounted() {
+        //on page load do this
+        this.onlyLocation;
+        this.onlyTopic;
+        this.onlyPrice;
+    },
+    methods: {
+        applyLocationFilter: function () {
+            var filterGenerated = []; //All courses are pushed here
+            var filteredObjects = []; //Filtered courses per filter go here
+            var currentFilter = [];
+
+            if (!this.topicApplied) {
+                ourProducts.productsToDisplay = ourProducts.course;
+                currentFilter = ourProducts.course;
+                this.onlyLocationAR = ourProducts.course;
+            } else if (this.locationApplied) {
+                ourProducts.productsToDisplay = ourProducts.course;
+                currentFilter = this.onlyLocationAR;
+            }
+            else {
+                currentFilter = ourProducts.productsToDisplay;
+            }
+
+            if (this.locationFilterValue.length > 0) {
+                this.locationApplied = true;
+                for (var i = 0; i < this.locationFilterValue.length; i++) {
+                    filteredObjects = this.locationFilterChecker(this.locationFilterValue[i], currentFilter);
+
+                    for (var o = 0; o < filteredObjects.length; o++) {
+                        filterGenerated.push(filteredObjects[o]);
+                    }
+                }
+                ourProducts.productsToDisplay = filterGenerated;
+                this.onlyLocationAR = filterGenerated;
+
+            } else {
+                if (this.onlyTopicAR.length > 0) {
+                    ourProducts.productsToDisplay = this.onlyTopicAR;
+                }else{
+                    ourProducts.productsToDisplay = ourProducts.course;
+                }
+                this.onlyLocationAR = ourProducts.course;
+                this.locationApplied = false;
+            }
+            console.log(this.onlyLocationAR);
+        }, applyTopicFilter: function () {
+            var filterGenerated = [];
+            var filteredObjects = [];
+            var currentFilter = [];
+
+            if (!this.locationApplied) {
+                ourProducts.productsToDisplay = ourProducts.course;
+                currentFilter = ourProducts.course;
+                this.onlyTopicAR = ourProducts.course;
+            } else if (this.topicApplied) {
+                ourProducts.productsToDisplay = ourProducts.course;
+                currentFilter = this.onlyTopicAR;
+            }
+            else {
+                currentFilter = ourProducts.productsToDisplay;
+            }
+
+            if (this.topicFilterValue.length > 0) {
+                this.topicApplied = true;
+
+                for (var i = 0; i < this.topicFilterValue.length; i++) {
+                    filteredObjects = this.topicFilterChecker(this.topicFilterValue[i], currentFilter);
+
+                    for (var o = 0; o < filteredObjects.length; o++) {
+                        filterGenerated.push(filteredObjects[o]);
+                    }
+                }
+                ourProducts.productsToDisplay = filterGenerated;
+                this.onlyTopicAR = filterGenerated;
+
+            } else {
+                if (this.onlyLocationAR.length > 0) {
+                    ourProducts.productsToDisplay = this.onlyLocationAR;
+                }else{
+                    ourProducts.productsToDisplay = ourProducts.course;
+                }
+                this.onlyTopicAR = ourProducts.course;
+                this.topicApplied = false;
+            }
+            
+            console.log(this.onlyTopicAR);
+        },
+
+        locationFilterChecker: function (checkVal, ar) {
+            var locationsFiltered = ar;
+
+            var filterGenerated = locationsFiltered.filter(function (location) {
+                return location.Location == checkVal;
+            })
+
+            return filterGenerated;
+        },
+        topicFilterChecker: function (checkVal, ar) {
+            var topicFiltered = ar;
+
+            var filterGenerated = topicFiltered.filter(function (topic) {
+                return topic.Topic == checkVal;
+            })
+
+            return filterGenerated;
+        }
+    },
+    watch: {
+        //this is watching for filter value to update
+        locationFilterValue: function (val) {
+            this.applyLocationFilter();
+        },
+        topicFilterValue: function (val) {
+            this.applyTopicFilter();
+        }
+    },
+    computed: {
+        onlyLocation: function () {
+            //Set will keep unique values and remove duplicates
+            var locations = new Set();
+
+            //Check for all locations and store them in set
+            for (var i = 0; i < ourProducts.course.length; i++) {
+                locations.add(ourProducts.course[i].Location);
+            }
+
+            //Our location array now holds all values of the set
+            this.location = locations;
+
+            //If there were values present then display the locations filter option
+            if (this.location.size > 0) {
+                this.locationsExist = true;
+            }
+        },
+        onlyTopic: function () {
+            var topics = new Set();
+
+            for (var i = 0; i < ourProducts.course.length; i++) {
+                topics.add(ourProducts.course[i].Topic);
+            }
+
+            this.topic = topics;
+
+            if (this.topic.size > 0) {
+                this.topicsExist = true;
+            }
+        },
+        onlyPrice: function () {
+            //create empty array for prices
+            var prices = [];
+
+            //push all prices to this new array
+            for (var i = 0; i < ourProducts.course.length; i++) {
+                prices[i] = ourProducts.course[i].Price;
+            }
+
+            //find max and min prices
+            var maxPrice = Math.max(...prices);
+            var minPrice = Math.min(...prices);
+
+            //empty array once again and 
+            //push the min and max only
+            prices = [];
+            prices.push(minPrice, maxPrice);
+
+            this.price = prices;
+
+            if (this.price.length > 0) {
+                this.pricesExist = true;
+                this.sliderValue = this.price[1];
+            }
+
+        }
+    }
+})
 

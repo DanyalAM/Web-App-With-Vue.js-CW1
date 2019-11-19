@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BrainHive</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -60,20 +60,49 @@
         </ul>
     </nav>
 
-    <aside>
-        Filter
+    <aside id="aside">
+        <p id="filter-heading">Filter by</p>
 
-        <ul>
-            <li class="filterItem">Item</li>
-            <li class="filterItem">Item</li>
-            <li class="filterItem">Item</li>
-            <li class="filterItem">Item</li>
-            <li class="filterItem">Item</li>
+        <ul v-show="locationsExist">
+            <p class="filter-topics">Location</p>
+
+            <li class="filter-item" v-for="locations in location">
+                <label class="filter-label" v-bind:for="locations">{{locations}}</label>
+                <input class="checkbox" type="checkbox" v-bind:id="locations" v-bind:value="locations"
+                    v-model="locationFilterValue">
+            </li>
+
         </ul>
+
+        <ul v-show="topicsExist">
+            <p class="filter-topics">Subject</p>
+
+            <li class="filter-item" v-for="topics in topic">
+                    <label class="filter-label" v-bind:for="topics">{{topics}}</label>
+                    <input class="checkbox" type="checkbox" v-bind:id="topics" v-bind:value="topics"
+                        v-model="topicFilterValue">
+                </li>
+
+        </ul>
+
+        <div class="price-slider">
+            <p class="filter-topics" id="slider-heading">Price</p>
+            <input type="range" v-bind:min="price[0]" v-bind:max="price[1]" v-model="sliderValue" class="slider"
+                id="myRange">
+        </div>
+
+        <div id="slider-pricing" v-show="pricesExist">
+            <p class="price-range">£{{price[0]}}</p>
+            <p class="price-range">£{{price[1]}}</p>
+        </div>
+
+        <p id="slider-value">£{{sliderValue}}</p>
+
 
     </aside>
 
     <main class="main-with-aisde">
+
         <div class="sorting-holder">
             <select v-bind="selected">
                 <option disabled value="">Select User Type</option>
@@ -82,15 +111,51 @@
             </select>
         </div>
 
+        <div class="products">
+            <div id="totalProductsFound"> There are in total {{ productsToDisplay.length }} courses. Among these,</div>
+
+
+            <div class="product" v-for="courses in productsToDisplay">
+                <div class="productImage">
+                    <img v-bind:src="courses.image" alt="">
+                </div>
+
+                <div class="productName">
+                    <b> {{ Object.keys(course[0])[0] }}: </b>
+                    {{ courses.Topic }}
+                </div>
+
+                <div class="productPrice">
+                    <b> {{ Object.keys(course[0])[2] }}: </b>
+                    £{{ courses.Price}}
+                </div>
+
+                <div class="productLocation">
+                    <b> {{ Object.keys(course[0])[1] }}: </b>
+                    {{ courses.Location }}
+                </div>
+
+                <div class="productRating">
+                    <i class="fa fa-star checked"></i>
+                    <i class="fa fa-star checked"></i>
+                    <i class="fa fa-star checked"></i>
+                    <i class="fa fa-star checked"></i>
+                    <i class="fa fa-star checked"></i>
+
+                </div>
+            </div>
+
+        </div>
+
 
     </main>
 
     <footer id="product-footer">
         Footer
     </footer>
+
+    <script src="../js/style-script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>
-
-<script type="module" src="../js/style-script.js"></script>
-<script src="../js/script.js"></script>
