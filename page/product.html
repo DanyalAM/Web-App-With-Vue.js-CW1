@@ -29,9 +29,11 @@
 
         </div>
 
-        <a id="login" v-bind:href=buttonLinkLogin><button>Login</button></a>
+        <a id="login" v-bind:href=buttonLinkLogin v-if="!loggedIn"><button>Login</button></a>
+        <a id="login" v-else><button v-on:click="logout">Logout</button></a>
 
-        <a id="register" v-bind:href=buttonLinkRegister><button>Register</button></a>
+        <a id="register" v-bind:href=buttonLinkRegister v-if="!loggedIn"><button>Register</button></a>
+        <a id="register" v-bind:href=buttonLinkAccount v-else><button>My Account</button></a>
 
 
         <div id="logo">
@@ -78,10 +80,10 @@
             <p class="filter-topics">Subject</p>
 
             <li class="filter-item" v-for="topics in topic">
-                    <label class="filter-label" v-bind:for="topics">{{topics}}</label>
-                    <input class="checkbox" type="checkbox" v-bind:id="topics" v-bind:value="topics"
-                        v-model="topicFilterValue">
-                </li>
+                <label class="filter-label" v-bind:for="topics">{{topics}}</label>
+                <input class="checkbox" type="checkbox" v-bind:id="topics" v-bind:value="topics"
+                    v-model="topicFilterValue">
+            </li>
 
         </ul>
 

@@ -30,10 +30,11 @@
 
         </div>
 
-        <a id="login" v-bind:href=buttonLinkLogin><button>Login</button></a>
+        <a id="login" v-bind:href=buttonLinkLogin v-if="!loggedIn"><button>Login</button></a>
+        <a id="login" v-else><button v-on:click="logout">Logout</button></a>
 
-        <a id="register" v-bind:href=buttonLinkRegister><button>Register</button></a>
-
+        <a id="register" v-bind:href=buttonLinkRegister v-if="!loggedIn"><button>Register</button></a>
+        <a id="register" v-bind:href=buttonLinkAccount v-else><button>My Account</button></a>
 
         <div id="logo">
             <svg width="150" height="27" viewBox="0 0 150 27" fill="none" xmlns="http://www.w3.org/2000/svg">

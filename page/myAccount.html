@@ -36,7 +36,6 @@
         <a id="register" v-bind:href=buttonLinkRegister v-if="!loggedIn"><button>Register</button></a>
         <a id="register" v-bind:href=buttonLinkAccount v-else><button>My Account</button></a>
 
-
         <div id="logo">
             <svg width="150" height="27" viewBox="0 0 150 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -64,80 +63,63 @@
     </nav>
 
 
-    <main class="main-without-aside not-index-main">
+    <main class="main-without-aside not-index-main user-page">
 
-        <div class="form-holder">
-            <form class="user-account-form" id="register-form" @submit="checkForm" action="login.html"
-                novalidate="true">
+        <div class="myAccount-welcome">You are signed in as {{username}}</div>
 
-                <h1 class="form-heading">Register</h1>
+        <div class="myAccount-features" v-show="currentUserIsProvider">
+            <div class="list-of-lessons">
+                <h1 class="myAccount-headings">Your Taught Lessons</h1>
 
-
-                <div class="input-holder">
-                    <div class="form-items">
-                        <label for="name-register">Name</label>
-                        <input type="text" id="name-register" placeholder="Name" v-model="registerInfo.name">
-                    </div>
-                    <p class="form-errors" v-show="nameError">{{nameErrorText}}</p>
-
-                    <div class="form-items">
-                        <label for="password-register">Password</label>
-                        <input type="password" id="password-register" placeholder="Password"
-                            v-model="registerInfo.password">
-                    </div>
-                    <p class="form-errors" v-show="passwordError">{{passwordErrorText}}</p>
-
-                    <div class="form-items">
-                        <label for="retype-password-register">Retype Password</label>
-                        <input type="password" id="retype-password-register" placeholder="Password"
-                            v-model="passwordAgain">
-                    </div>
-                    <p class="form-errors" v-show="passwordAgainError">{{passwordAgainErrorText}}</p>
-
-                    <div class="form-items">
-                        <label for="email-register">Email</label>
-                        <input type="email" id="email-register" placeholder="Email" v-model="registerInfo.email">
-                    </div>
-                    <p class="form-errors" v-show="emailError">{{emailErrorText}}</p>
-
-                    <div class="form-items">
-                        <label for="select-box">User Type</label>
-                        <select v-model="registerInfo.userType" id="select-box">
-                            <option selected disabled value="">Select User Type</option>
-                            <option value="1">Student/Parent</option>
-                            <option value="2">Serivce Provider</option>
-                        </select>
-                    </div>
-                    <p class="form-errors" v-show="userTypeError">{{userTypeErrorText}}</p>
-
-                </div>
-                <button type=submit>Submit</button>
-            </form>
-              
-
-            <div class="password-error-holder" v-show="passwordWrong">
-                <div class="error-message-box-heading">
-                    <i class="fa fa-exclamation-triangle danger-sign"></i>
-                    Incorrect Password!
+                <div class="lessons" v-for="(product, index) in providerProducts">
+                    <div class="lesson-name">{{product.registerTopic}}</div>
+                    <div class="lesson-price">£{{product.registerPrice}}</div>
+                    <div class="lesson-location">{{product.registerLocation}}</div>
+                    <button class="remove-button" v-on:click="removeProduct(index)">Remove</button>
                 </div>
 
-                <div class="triangle"></div>
+            </div>
 
-                <div class="error-message-box">
-                    <p>Your password must contain at least...</p>
+            <div class="service-form">
+                <h1 class="myAccount-headings">Add More Services</h1>
 
-                    <div class="password-requirements">
-                        <ul>
-                            <li v-for="reqs in requirements">
-                                {{reqs}}
-                            </li>
-                        </ul>
+                <form class="user-service-form" ref="form" id="service-form" v-on:keyup.enter="verifyLesson"  action="myAccount.html" 
+                @submit="verifyLesson" novalidate="true">
+
+
+                    <div class="input-holder">
+                        <div class="form-items">
+                            <label for="register-topic">Topic</label>
+                            <input type="text" id="register-topic" placeholder="Topic"
+                                v-model="subjectInfo.registerTopic">
+                        </div>
+
+                        <p class="register-subject-form-errors" v-show="topicError">{{topicErrorText}}</p>
+
+
+                        <div class="form-items">
+                            <label for="register-price">Price</label>
+                            <input type="text" id="register-price" placeholder="Price"
+                                v-model="subjectInfo.registerPrice">
+                        </div>
+
+                        <p class="register-subject-form-errors" v-show="priceError">{{priceErrorText}}</p>
+
+
+                        <div class="form-items">
+                            <label for="register-location">Location</label>
+                            <input type="text" id="register-location" placeholder="Location"
+                                v-model="subjectInfo.registerLocation">
+                        </div>
+
+                        <p class="register-subject-form-errors" v-show="locationError">{{locationErrorText}}</p>
                     </div>
-                </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+
             </div>
         </div>
-
-
     </main>
 
     <footer>

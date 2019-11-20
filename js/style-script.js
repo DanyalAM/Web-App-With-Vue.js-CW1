@@ -37,9 +37,15 @@ Vue.directive('click-outside', {
 var menuButtonClicker = new Vue({
         el: 'header',
         data: {
+                loggedIn: false,
                 buttonLinkRegister: "../page/register.html",
-                buttonLinkLogin: "../page/login.html"
-            },
+                buttonLinkLogin: "../page/login.html",
+                buttonLinkAccount: "../page/myAccount.html"
+        },
+        mounted() {
+                //on page load do this
+                this.isLoggedIn();
+        },
         methods: {
                 menuClicked: function () {
                         if (menuBar.show) {
@@ -50,6 +56,17 @@ var menuButtonClicker = new Vue({
                 },
                 clickedOutside: function (event) {
                         this.show = false;
+                },
+                isLoggedIn: function () {
+                        if (localStorage.getItem('currentUser') != undefined) {
+                                this.loggedIn = true;
+                        }
+                },
+                logout: function(){
+                        if (localStorage.getItem('currentUser') != undefined) {
+                                localStorage.removeItem('currentUser');
+                                this.loggedIn = false;
+                        }
                 }
 
         }

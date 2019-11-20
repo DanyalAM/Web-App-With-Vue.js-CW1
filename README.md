@@ -4,13 +4,16 @@ First coursework for the module 'Web Based Mobile App Development'.
 # BrainHive 0.3
 
 ## New Features
-- Login page is now fully validated
-- Users can login with their email and password
-- User session is stored 
+- User login is now visibly shown
+- Users can now logout from their session
+- Users can view their profile
+- Logged in user's name is shown
+- Service Providers can now add their own products 
+- Services Providers can now remove their own products
 ## Todo
-- User session is not currently displayed (visually)
-- Product page is incomplete
-- User account page is incomplete 
+- Service provider products are not shown on the products page
+- Reviews are not implemented
 ## Known Issues
 - We're aware of case-sensitive email validation issues
+- Filter click radius is dependant on the label and not the box
 

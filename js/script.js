@@ -26,7 +26,6 @@ if (localStorage.getItem('justRegistered') !== null) {
     }
 }
 
-
 //if a minute has passed from the old time then return true
 function minuteChecker(oldTime, timeDifference) {
     var minutePassed = true;
@@ -36,9 +35,8 @@ function minuteChecker(oldTime, timeDifference) {
     return minutePassed;
 }
 
-
-
 var userAccounts = JSON.parse(localStorage.getItem('userInfo'));
+var servicesProvided = JSON.parse(localStorage.getItem('servicesProvided'));
 
 //Registration validation
 var registerForm = new Vue({
@@ -61,7 +59,8 @@ var registerForm = new Vue({
             name: null,
             password: null,
             email: null,
-            userType: null
+            userType: null,
+            userID: 0
         }
     },
     methods: {
@@ -145,7 +144,8 @@ var registerForm = new Vue({
 
             //If all information is correctly entered
             //Push the user information to localstorage
-            if (this.allCorrect.length == 5) {
+            if (this.allCorrect.length >= 5) {
+                this.registerInfo.userID = (userAccounts.length + 1)
                 userAccounts.push(this.registerInfo);
                 localStorage.setItem('userInfo', JSON.stringify(userAccounts));
 
@@ -301,6 +301,143 @@ var ourProducts = new Vue({
     }
 });
 
+var userPage = new Vue({
+    el: '.user-page',
+    data: {
+        username: '',
+        currentUserIsProvider: false,
+        providerProducts: [],
+        allCorrect: [],
+        counter: 0,
+        userProducts: JSON.parse(localStorage.getItem('servicesProvided')),
+
+        subjectInfo: {
+            registerTopic: null,
+            registerPrice: null,
+            registerLocation: null,
+            userID: 0,
+            productID: 0,
+        },
+
+        topicError: false,
+        topicErrorText: '',
+        priceError: false,
+        priceErrorText: '',
+        locationError: false,
+        locationErrorText: ''
+    },
+    mounted() {
+        this.confirmName();
+        this.checkUserID();
+        this.displayUserLessons();
+        this.counter = this.userProducts.length;
+    },
+    methods: {
+        verifyLesson: function (e) {
+            if (!this.subjectInfo.registerTopic) {
+                this.topicError = true;
+                this.topicErrorText = "Please enter the topic of your course"
+            } else {
+                this.topicError = false;
+                this.topicErrorText = "";
+                this.allCorrect.push(true);
+            }
+
+            if (!this.subjectInfo.registerPrice) {
+                this.priceError = true;
+                this.priceErrorText = "Please enter the price of your course"
+            } else {
+                this.priceError = false;
+                this.priceErrorText = "";
+                this.allCorrect.push(true);
+            }
+
+            if (!this.subjectInfo.registerLocation) {
+                this.locationError = true;
+                this.locationErrorText = "Please enter the location of your course"
+            } else {
+                this.locationError = false;
+                this.locationErrorText = "";
+                this.allCorrect.push(true);
+            }
+
+            if (this.allCorrect.length >= 3) {
+                var currentUserEmail = JSON.parse(localStorage.getItem('currentUser')); //current user email
+                //find user full details with that email
+                var found = userAccounts.find(element => element.email == currentUserEmail);
+
+                this.subjectInfo.userID = found.userID;
+
+                //get services localstorage
+                if (this.userProducts !== null) {
+                    this.counter++;
+
+                    this.subjectInfo.productID = (this.counter);
+                    servicesProvided.push(this.subjectInfo);
+
+                    localStorage.setItem('servicesProvided', JSON.stringify(servicesProvided));
+                    e.submit();
+                }
+                
+            }
+
+            e.preventDefault();
+        },
+        confirmName: function () {
+            if (localStorage.getItem('currentUser') !== null) {
+                var currentUserEmail = JSON.parse(localStorage.getItem('currentUser')); //current user email
+                //find user full details with that email
+                var found = userAccounts.find(element => element.email == currentUserEmail);
+                //update username on user's page
+                this.username = found.name;
+            }
+        },
+        checkUserID: function () {
+            var currentUserEmail = JSON.parse(localStorage.getItem('currentUser')); //current user email
+            //find user full details with that email
+            var found = userAccounts.find(element => element.email == currentUserEmail);
+
+            if (found !== undefined) {
+                if (found.userType == 1) {
+                    this.currentUserIsProvider = false
+                } else if (found.userType == undefined) {
+                    this.currentUserIsProvider = false
+                }
+                else {
+                    this.currentUserIsProvider = true;
+                }
+            }
+        },
+        displayUserLessons: function () {
+            var currentUserEmail = JSON.parse(localStorage.getItem('currentUser')); //current user email
+            //find user full details with that email
+
+            if (currentUserEmail !== null) {
+                var found = userAccounts.find(element => element.email == currentUserEmail);
+
+                this.providerProducts = this.servicesFilter(found.userID, this.userProducts);
+            }
+        },
+        servicesFilter: function (checkVal, ar) {
+            var topicFiltered = ar;
+
+            var filterGenerated = topicFiltered.filter(function (service) {
+                return service.userID == checkVal;
+            })
+
+            return filterGenerated;
+        },
+        removeProduct: function (removalPos) {
+
+            this.userProducts = this.userProducts.filter(item => item.productID !== this.providerProducts[removalPos].productID);
+
+            localStorage.setItem('servicesProvided', JSON.stringify(this.userProducts));
+
+            this.providerProducts.splice(removalPos, 1);
+        }
+    }
+})
+
 
 var asideMenu = new Vue({
     el: '#aside',
@@ -359,7 +496,7 @@ var asideMenu = new Vue({
             } else {
                 if (this.onlyTopicAR.length > 0) {
                     ourProducts.productsToDisplay = this.onlyTopicAR;
-                }else{
+                } else {
                     ourProducts.productsToDisplay = ourProducts.course;
                 }
                 this.onlyLocationAR = ourProducts.course;
@@ -399,13 +536,13 @@ var asideMenu = new Vue({
             } else {
                 if (this.onlyLocationAR.length > 0) {
                     ourProducts.productsToDisplay = this.onlyLocationAR;
-                }else{
+                } else {
                     ourProducts.productsToDisplay = ourProducts.course;
                 }
                 this.onlyTopicAR = ourProducts.course;
                 this.topicApplied = false;
             }
-            
+
             console.log(this.onlyTopicAR);
         },
 
