@@ -32,7 +32,7 @@
         <a id="login" v-else><button v-on:click="logout">Logout</button></a>
 
         <a id="register" v-bind:href=buttonLinkRegister v-if="!loggedIn"><button>Register</button></a>
-        <a id="register" v-bind:href=buttonLinkAccount v-else><button>My Account</button></a>
+        <a id="register" href="../page/myAccount.html" v-else><button>My Account</button></a>
 
 
         <div id="logo">
@@ -121,7 +121,9 @@
             <div class="rating-error" v-show="alreadyRated">
                 Already Rated
             </div>
-            <div id="totalProductsFound"> There are in total {{ productsToDisplay.length }} courses. Among these,</div>
+            <div id="totalProductsFound" v-if="!searchApplied"> There are in total {{ productsToDisplay.length }} courses. Among these,</div>
+            <div id="totalProductsFound" v-else> Your search of <b>{{ curSearch }}</b> returned {{ productsToDisplay.length }} products</div>
+
 
             <!-- Print out the products in our storage array -->
             <div class="product" v-for="courses in productsToDisplay">

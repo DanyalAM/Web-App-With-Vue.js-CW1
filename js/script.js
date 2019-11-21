@@ -146,7 +146,8 @@ var registerForm = new Vue({
             //If all information is correctly entered
             //Push the user information to localstorage
             if (this.allCorrect.length >= 5) {
-                this.registerInfo.userID = (userAccounts.length + 1)
+                this.registerInfo.userID = (userAccounts.length + 1);
+                this.registerInfo.email = this.registerInfo.email.toLowerCase();
                 userAccounts.push(this.registerInfo);
                 localStorage.setItem('userInfo', JSON.stringify(userAccounts));
 
@@ -170,7 +171,7 @@ var registerForm = new Vue({
             //if the email already is in use return true
             var found = false;
             userAccounts.find(function (element) {
-                if (element.email == email) {
+                if (element.email.toLowerCase() == email.toLowerCase()) {
                     found = true;
                 }
                 return found;
@@ -256,7 +257,7 @@ var loginForm = new Vue({
         },
         checkCredentials: function (email, password) {
             var success = false;
-            var found = userAccounts.find(element => element.email == email);
+            var found = userAccounts.find(element => element.email.toLowerCase() == email.toLowerCase());
 
             if (found != undefined) {
                 if (found.password == password) {
@@ -287,6 +288,12 @@ var ourProducts = new Vue({
         }
 
         this.course = servicesProvided;
+
+        if (window.location.search.split('=')[1] == "") {
+            this.searchApplied = false;
+        } else {
+            this.searchApplied = true;
+        }
 
     },
     data: function () {
@@ -400,6 +407,8 @@ var ourProducts = new Vue({
             crumbFound: false,
             alreadyRated: false,
             sortSelected: '',
+            searchApplied: false,
+            curSearch: '',
         }
     },
     methods: {
@@ -998,7 +1007,8 @@ var pageHeader = new Vue({
 
             //turn that array into a word or sentence
             for (var i = 0; i < this.listOfWords.length; i++) {
-                this.searchedQuery += this.listOfWords[i];
+                this.searchedQuery += this.listOfWords[i] + " ";
+                ourProducts.curSearch += this.listOfWords[i] + " "; 
             }
 
             this.currentSearch = '';
@@ -1009,7 +1019,7 @@ var pageHeader = new Vue({
         },
         searchFilter: function (val, ar) {
             var searchGenerated = ar.filter(function (a) {
-                return a.Topic.toLowerCase().includes(val);
+                return a.Topic.toLowerCase().includes(val.trim());
             })
 
             return searchGenerated;

@@ -16,11 +16,11 @@
 
     <header>
         <div id="menu" v-on:click="menuClicked" tabindex="1" ref="menuButton">
-            <i class="fa fa-bars menu-icon" ref="menuBars"></i>
+            <i class="fa fa-bars menu-icon" ref="menuBars" ref="indexPage"></i>
         </div>
 
         <div class="searchCenter">
-            <form class="searchContainer" v-on:submit="userSearched" action="page/product.html">
+            <form class="searchContainer" v-on:submit="userSearched" action="product.html">
                 <i class="fa fa-search searchIcon"></i>
                 <input class="searchBox" type="text" name="search" placeholder="Search...">
                 <input type="submit" value="Search" class="searchButton">
@@ -28,11 +28,11 @@
 
         </div>
 
-        <a id="login" v-bind:href=buttonLinkLogin v-if="!loggedIn"><button>Login</button></a>
+        <a id="login" href="page/login.html" v-if="!loggedIn"><button>Login</button></a>
         <a id="login" v-else><button v-on:click="logout">Logout</button></a>
 
-        <a id="register" v-bind:href=buttonLinkRegister v-if="!loggedIn"><button>Register</button></a>
-        <a id="register" v-bind:href=buttonLinkAccount v-else><button>My Account</button></a>
+        <a id="register" href="page/register.html" v-if="!loggedIn"><button>Register</button></a>
+        <a id="register" href="page/myAccount.html" v-else><button>My Account</button></a>
 
         <div id="logo">
             <svg width="150" height="27" viewBox="0 0 150 27" fill="none" xmlns="http://www.w3.org/2000/svg">
