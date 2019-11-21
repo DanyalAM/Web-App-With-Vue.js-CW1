@@ -399,6 +399,7 @@ var ourProducts = new Vue({
             run: false,
             crumbFound: false,
             alreadyRated: false,
+            sortSelected: '',
         }
     },
     methods: {
@@ -418,7 +419,7 @@ var ourProducts = new Vue({
                     //exit loop if crumb is found
                     this.crumbFound = true;
                     this.alreadyRated = true;
-                    setTimeout(() => { this.alreadyRated = false}, 3000)
+                    setTimeout(() => { this.alreadyRated = false }, 3000)
                 } else {
                     this.crumbFound = false;
                 }
@@ -467,6 +468,30 @@ var ourProducts = new Vue({
                 //add back the data to localstorage
                 localStorage.setItem('userInfo', JSON.stringify(userAccounts));
 
+            }
+        },
+        sortUpdated: function () {
+            //if first sort is selected
+            if (this.sortSelected == 1) {
+                //sort alphabetically A-Z
+                this.productsToDisplay.sort((a, b) => a.Topic.localeCompare(b.Topic));
+            } else if (this.sortSelected == 2) {
+                //otherwise is option 2 is selected 
+                //sort alphabetically Z-A
+                this.productsToDisplay.sort((a, b) => b.Topic.localeCompare(a.Topic));
+            } else if (this.sortSelected == 3) {
+                //otherwise if option 3 is selected
+                //sort by price high to low
+                this.Products.productsToDisplay.sort(function (a, b) { return b.Price - a.Price });
+            }
+            else if (this.sortSelected == 4) {
+                //otherwise if option 4 is selected
+                //sort by price low to high
+                this.Products.productsToDisplay.sort(function (a, b) { return a.Price - b.Price });
+            } else if (this.sortSelected == 5) {
+                //if option 5 is selected
+                //sort by best reviews to worse 
+                this.Products.productsToDisplay.sort(function (a, b) { return b.AvgRating - a.AvgRating });
             }
         }
     },
@@ -720,8 +745,12 @@ var asideMenu = new Vue({
                     this.alreadyRunL = true;
                     this.applyPriceFilter();
                 }
-                this.onlyLocationAR = ourProducts.course;
+                this.onlyLocationAR = servicesProvided;
                 this.locationApplied = false;
+
+                if (ourProducts.sortSelected != "") {
+                    ourProducts.sortUpdated();
+                }
             }
         }, applyTopicFilter: function () {
             this.onlyTopicAR = ourProducts.course;
@@ -793,8 +822,12 @@ var asideMenu = new Vue({
                     this.alreadyRunT = true;
                     this.applyPriceFilter();
                 }
-                this.onlyTopicAR = ourProducts.course;
+                this.onlyTopicAR = servicesProvided;
                 this.topicApplied = false;
+
+                if (ourProducts.sortSelected != "") {
+                    ourProducts.sortUpdated();
+                }
             }
         },
         applyPriceFilter: function () {
@@ -810,6 +843,10 @@ var asideMenu = new Vue({
                 this.applyLocationFilter();
                 this.applyTopicFilter();
                 ourProducts.productsToDisplay = this.priceFilterChecker(this.sliderValue, ourProducts.productsToDisplay);
+            }
+
+            if (ourProducts.sortSelected != "") {
+                ourProducts.sortUpdated();
             }
 
             this.priceApplied = true;

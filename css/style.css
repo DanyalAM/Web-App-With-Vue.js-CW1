@@ -246,17 +246,36 @@ aside ul {
 }
 
 aside ul li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: center;
+    align-content: center;
     background: var(--logo-color);
     margin: 20px;
-    padding: 10px;
     border: 1px solid #969696;
     border-radius: 10px;
+}
+
+.filter-label{
+    padding: 10px;
+    width: 100%;
+}
+
+.filter-label:hover{
+    cursor: pointer;
+}
+
+aside ul li:hover{
+    cursor: pointer;
 }
 
 .checkbox {
     float: right;
 }
 
+.checkbox:hover{
+    cursor: pointer;
+}
 
 #slider-heading {
     padding-bottom: 15px;

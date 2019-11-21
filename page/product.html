@@ -104,16 +104,20 @@
 
     <main class="main-with-aisde">
 
-        <div class="sorting-holder">
-            <select v-bind="selected">
-                <option disabled value="">Select User Type</option>
-                <option>Student/Parent</option>
-                <option>Serivce Provider</option>
-            </select>
-        </div>
-
 
         <div class="products">
+
+            <div class="sorting-holder">
+                <select v-model="sortSelected" @change="sortUpdated">
+                    <option disabled value="">Sorting Options</option>
+                    <option value="1">A-Z</option>
+                    <option value="2">Z-A</option>
+                    <option value="3">Price (H-L)</option>
+                    <option value="4">Price (L-H)</option>
+                    <option value="5">Review</option>
+                </select>
+            </div>
+
             <div class="rating-error" v-show="alreadyRated">
                 Already Rated
             </div>
