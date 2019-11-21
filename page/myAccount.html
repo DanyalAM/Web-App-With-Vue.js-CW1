@@ -82,15 +82,14 @@
             <div class="service-form">
                 <h1 class="myAccount-headings">Add More Services</h1>
 
-                <form class="user-service-form" ref="form" id="service-form" v-on:keyup.enter="verifyLesson"  action="myAccount.html" 
-                @submit="verifyLesson" novalidate="true">
+                <form class="user-service-form" ref="form" id="service-form" v-on:keyup.enter="verifyLesson"
+                    action="myAccount.html" @submit="verifyLesson" novalidate="true">
 
 
                     <div class="input-holder">
                         <div class="form-items">
                             <label for="register-topic">Topic</label>
-                            <input type="text" id="register-topic" placeholder="Topic"
-                                v-model="subjectInfo.Topic">
+                            <input type="text" id="register-topic" placeholder="Topic" v-model="subjectInfo.Topic">
                         </div>
 
                         <p class="register-subject-form-errors" v-show="topicError">{{topicErrorText}}</p>
@@ -113,7 +112,7 @@
                         <p class="register-subject-form-errors" v-show="locationError">{{locationErrorText}}</p>
                     </div>
 
-                    <button type="submit" value="Submit">Submit</button>
+                    <input type="submit" value="Submit">
                 </form>
 
             </div>
@@ -124,7 +123,6 @@
         Footer
     </footer>
 
-    <script src="../js/style-script.js"></script>
     <script src="../js/script.js"></script>
 
 </body>

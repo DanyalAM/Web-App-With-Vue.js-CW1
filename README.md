@@ -4,12 +4,11 @@ First coursework for the module 'Web Based Mobile App Development'.
 # BrainHive 0.3
 
 ## New Features
-- Added sorting options
-- Updated sorting criterias
+- Added searching options
+- Search works based on other filters 
  
 ## Known Issues
 - We're aware of case-sensitive email validation issues
 
-## Fixed
-- Filter options are now properly adjusted to allow click on the entire surface area
+
 

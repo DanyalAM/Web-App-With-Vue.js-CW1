@@ -823,7 +823,8 @@ pre {
 }
 
 .form-holder button,
-.user-service-form button {
+.user-service-form button,
+.user-service-form input[type=submit] {
     outline: none;
     border: none;
     border-top: 1px solid #ccc;
@@ -835,6 +836,7 @@ pre {
     color: #ccc;
     background: none;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .form-errors {

@@ -482,16 +482,16 @@ var ourProducts = new Vue({
             } else if (this.sortSelected == 3) {
                 //otherwise if option 3 is selected
                 //sort by price high to low
-                this.Products.productsToDisplay.sort(function (a, b) { return b.Price - a.Price });
+                this.productsToDisplay.sort(function (a, b) { return b.Price - a.Price });
             }
             else if (this.sortSelected == 4) {
                 //otherwise if option 4 is selected
                 //sort by price low to high
-                this.Products.productsToDisplay.sort(function (a, b) { return a.Price - b.Price });
+                this.productsToDisplay.sort(function (a, b) { return a.Price - b.Price });
             } else if (this.sortSelected == 5) {
                 //if option 5 is selected
                 //sort by best reviews to worse 
-                this.Products.productsToDisplay.sort(function (a, b) { return b.AvgRating - a.AvgRating });
+                this.productsToDisplay.sort(function (a, b) { return b.AvgRating - a.AvgRating });
             }
         }
     },
@@ -635,7 +635,7 @@ var userPage = new Vue({
             }
         },
         servicesFilter: function (checkVal, ar) {
-            //check what services belongs to the logged only user only
+            //check what services belongs to the logged on user only
             var topicFiltered = ar;
 
             var filterGenerated = topicFiltered.filter(function (service) {
@@ -739,13 +739,13 @@ var asideMenu = new Vue({
                     this.applyTopicFilter();
                     ourProducts.productsToDisplay = this.onlyTopicAR;
                 } else {
-                    ourProducts.productsToDisplay = ourProducts.course;
+                    ourProducts.productsToDisplay = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), ourProducts.course);
                 }
                 if (!this.alreadyRunL) {
                     this.alreadyRunL = true;
                     this.applyPriceFilter();
                 }
-                this.onlyLocationAR = servicesProvided;
+                this.onlyLocationAR = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), servicesProvided);
                 this.locationApplied = false;
 
                 if (ourProducts.sortSelected != "") {
@@ -816,13 +816,13 @@ var asideMenu = new Vue({
                     this.applyLocationFilter();
                     ourProducts.productsToDisplay = this.onlyLocationAR;
                 } else {
-                    ourProducts.productsToDisplay = ourProducts.course;
+                    ourProducts.productsToDisplay = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), ourProducts.course);
                 }
                 if (!this.alreadyRunT) {
                     this.alreadyRunT = true;
                     this.applyPriceFilter();
                 }
-                this.onlyTopicAR = servicesProvided;
+                this.onlyTopicAR = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), servicesProvided);
                 this.topicApplied = false;
 
                 if (ourProducts.sortSelected != "") {
@@ -853,7 +853,7 @@ var asideMenu = new Vue({
 
         },
         locationFilterChecker: function (checkVal, ar) {
-            var locationsFiltered = ar;
+            var locationsFiltered = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), ar);
 
             var filterGenerated = locationsFiltered.filter(function (location) {
                 return location.Location == checkVal;
@@ -862,7 +862,7 @@ var asideMenu = new Vue({
             return filterGenerated;
         },
         topicFilterChecker: function (checkVal, ar) {
-            var topicFiltered = ar;
+            var topicFiltered = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), ar);
 
             var filterGenerated = topicFiltered.filter(function (topic) {
                 return topic.Topic == checkVal;
@@ -871,7 +871,7 @@ var asideMenu = new Vue({
             return filterGenerated;
         },
         priceFilterChecker: function (checkVal, ar) {
-            var topicFiltered = ar;
+            var topicFiltered = pageHeader.searchFilter(pageHeader.searchedQuery.toLowerCase(), ar);
 
             var filterGenerated = topicFiltered.filter(function (price) {
                 return price.Price <= checkVal;
@@ -949,6 +949,111 @@ var asideMenu = new Vue({
     }
 })
 
+//Hamburger-Menu
+//If button is clicked and Nav bar is not open then the nav bar opens
+//If the nav bar is already open then button click will close it
+var pageHeader = new Vue({
+    el: 'header',
+    data: {
+        loggedIn: false,
+        buttonLinkRegister: "../page/register.html",
+        buttonLinkLogin: "../page/login.html",
+        buttonLinkAccount: "../page/myAccount.html",
+        searchedQuery: '',
+        currentSearch: window.location.search,
+        listOfWords: [],
+    },
+    mounted() {
+        //on page load do this
+        this.isLoggedIn();
+        this.userSearched();
+    },
+    methods: {
+        menuClicked: function () {
+            if (menuBar.show) {
+                menuBar.show = false;
+            } else {
+                menuBar.show = true;
+            }
+        },
+        isLoggedIn: function () {
+            if (localStorage.getItem('currentUser') != undefined) {
+                this.loggedIn = true;
+            }
+        },
+        logout: function () {
+            if (localStorage.getItem('currentUser') != undefined) {
+                localStorage.removeItem('currentUser');
+                this.loggedIn = false;
+            }
+        },
+        userSearched: function () {
+            //remove = and everything before it
+            this.listOfWords = [];
+            var queryString = this.currentSearch ? this.currentSearch.split('=')[1] : this.currentSearch.slice(1);
+
+            //split all words based on where ever + is found
+            //this will create an array of words
+            this.listOfWords = queryString.split('+');
+
+            //turn that array into a word or sentence
+            for (var i = 0; i < this.listOfWords.length; i++) {
+                this.searchedQuery += this.listOfWords[i];
+            }
+
+            this.currentSearch = '';
+
+            if (this.searchedQuery !== undefined) {
+                ourProducts.productsToDisplay = this.searchFilter(this.searchedQuery.toLowerCase(), servicesProvided);
+            }
+        },
+        searchFilter: function (val, ar) {
+            var searchGenerated = ar.filter(function (a) {
+                return a.Topic.toLowerCase().includes(val);
+            })
+
+            return searchGenerated;
+        }
+    }
+})
+
+//THIS SCRIPT FROM THIS POINT FORWARD IS COSEMETIC ONLY IT SERVES 
+//NO PURPOSE OTHER THAN CONTROLLING THE BEHAVIOUR OF THE NAVIGATION MENU
+
+//This is a directive to check if user click outside of the navigation menu
+Vue.directive('click-outside', {
+    bind: function (el, binding, vnode) {
+        el.clickOutsideEvent = function (event) {
+            //if the click is outside the nav bar and its children then proceed
+            //otherwise nothing happens
+            if (!(el == event.target || el.contains(event.target))) {
+                //If the click is not on the hamburger menu or its child (the icon) then proceed
+                //or nothing happens
+                if (!(event.target == pageHeader.$refs.menuButton || pageHeader.$refs.menuButton.contains(event.target))) {
+                    vnode.context[binding.expression](event.target);
+                };
+            }
+        }
+        document.body.addEventListener('click', el.clickOutsideEvent)
+    },
+    unbind: function (el) {
+        document.body.removeEventListener('click', el.clickOutsideEvent)
+    },
+});
 
 
+//Navigation Bar
+//At the start it will always be false so the nav var will not be open
+var menuBar = new Vue({
+    el: '.scripted-menu',
+    data: {
+        show: false
+    },
+    methods: {
+        clickedOutside: function (event) {
+            this.show = false;
+        }
+    }
+
+});
 
