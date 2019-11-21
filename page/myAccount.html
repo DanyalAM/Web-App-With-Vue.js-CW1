@@ -10,7 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-clickaway@2.2.2/dist/vue-clickaway.min.js"></script>
 
 </head>
 
@@ -72,9 +71,9 @@
                 <h1 class="myAccount-headings">Your Taught Lessons</h1>
 
                 <div class="lessons" v-for="(product, index) in providerProducts">
-                    <div class="lesson-name">{{product.registerTopic}}</div>
-                    <div class="lesson-price">£{{product.registerPrice}}</div>
-                    <div class="lesson-location">{{product.registerLocation}}</div>
+                    <div class="lesson-name">{{product.Topic}}</div>
+                    <div class="lesson-price">£{{product.Price}}</div>
+                    <div class="lesson-location">{{product.Location}}</div>
                     <button class="remove-button" v-on:click="removeProduct(index)">Remove</button>
                 </div>
 
@@ -91,7 +90,7 @@
                         <div class="form-items">
                             <label for="register-topic">Topic</label>
                             <input type="text" id="register-topic" placeholder="Topic"
-                                v-model="subjectInfo.registerTopic">
+                                v-model="subjectInfo.Topic">
                         </div>
 
                         <p class="register-subject-form-errors" v-show="topicError">{{topicErrorText}}</p>
@@ -99,8 +98,7 @@
 
                         <div class="form-items">
                             <label for="register-price">Price</label>
-                            <input type="text" id="register-price" placeholder="Price"
-                                v-model="subjectInfo.registerPrice">
+                            <input type="number" id="register-price" v-model="subjectInfo.Price">
                         </div>
 
                         <p class="register-subject-form-errors" v-show="priceError">{{priceErrorText}}</p>
@@ -109,13 +107,13 @@
                         <div class="form-items">
                             <label for="register-location">Location</label>
                             <input type="text" id="register-location" placeholder="Location"
-                                v-model="subjectInfo.registerLocation">
+                                v-model="subjectInfo.Location">
                         </div>
 
                         <p class="register-subject-form-errors" v-show="locationError">{{locationErrorText}}</p>
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" value="Submit">Submit</button>
                 </form>
 
             </div>

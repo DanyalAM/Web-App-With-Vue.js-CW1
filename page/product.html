@@ -10,7 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-clickaway@2.2.2/dist/vue-clickaway.min.js"></script>
 </head>
 
 <body>
@@ -90,7 +89,7 @@
         <div class="price-slider">
             <p class="filter-topics" id="slider-heading">Price</p>
             <input type="range" v-bind:min="price[0]" v-bind:max="price[1]" v-model="sliderValue" class="slider"
-                id="myRange">
+                id="myRange" @change="applyPriceFilter">
         </div>
 
         <div id="slider-pricing" v-show="pricesExist">
@@ -113,10 +112,14 @@
             </select>
         </div>
 
+
         <div class="products">
+            <div class="rating-error" v-show="alreadyRated">
+                Already Rated
+            </div>
             <div id="totalProductsFound"> There are in total {{ productsToDisplay.length }} courses. Among these,</div>
 
-
+            <!-- Print out the products in our storage array -->
             <div class="product" v-for="courses in productsToDisplay">
                 <div class="productImage">
                     <img v-bind:src="courses.image" alt="">
@@ -137,13 +140,17 @@
                     {{ courses.Location }}
                 </div>
 
-                <div class="productRating">
-                    <i class="fa fa-star checked"></i>
-                    <i class="fa fa-star checked"></i>
-                    <i class="fa fa-star checked"></i>
-                    <i class="fa fa-star checked"></i>
-                    <i class="fa fa-star checked"></i>
+                <!-- Print out the current rating stars (only coloured stars)-->
+                <!-- Then print out remaining black stars to complete the 5-star look -->
+                <!-- These will also submit their product rating when clicked 
+                so we know which product was rated -->
 
+                <div class="productRating">
+                    <i class="fa fa-star checked rating" v-for="(rating, index) in courses.AvgRating"
+                        v-on:click="likeProduct(index, courses.productID)"></i>
+                    <i class="fa fa-star unchecked rating" v-for="(rating, index) in (5 - courses.AvgRating)"
+                        v-on:click="likeProduct(index + courses.AvgRating, courses.productID)"></i>
+                    <p>{{courses.AvgRating}} Avg. Rating by {{courses.Raters}} users</p>
                 </div>
             </div>
 

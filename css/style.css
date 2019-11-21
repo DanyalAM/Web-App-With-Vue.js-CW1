@@ -38,6 +38,7 @@ body {
     margin: 0;
     grid-template-columns: 1fr 8fr;
     grid-template-rows: auto auto 1fr auto;
+    min-width: 1200px;
     /* _ */
 }
 
@@ -50,7 +51,6 @@ header {
     border: 1px solid #969696;
     padding: 0.4rem;
     grid-gap: 0.2rem;
-    min-width: 82rem;
     /* height: 50px; */
 }
 
@@ -138,7 +138,7 @@ header {
     height: 30px;
     color: white;
     border-radius: 10px;
-    width: 80px;
+    width: 90px;
 }
 
 #logo {
@@ -896,7 +896,8 @@ pre {
 .product {
     padding: 10px;
     display: inline-block;
-    width: 250px;
+    width: 300px;
+    margin-bottom: 20px;
 }
 
 .product .productImage {
@@ -931,8 +932,46 @@ pre {
 }
 
 .product .productRating {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto 1fr;
     border: 1px solid black;
     padding: 0.2rem;
+}
+
+.productRating p {
+    text-align: right;
+    font-size: 15px;
+}
+
+.checked {
+    color: orange;
+}
+
+.unchecked {
+    color: black;
+}
+
+.rating:hover {
+    cursor: pointer;
+}
+
+.rating:hover~.rating {
+    color: orange;
+}
+
+.productRating .fa-star {
+    padding-top: 0.1rem;
+}
+
+.rating-error {
+    background: orange;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid #ccc;
+}
+
+.hide{ 
+    display: none;
 }
 
 /* User Page */
@@ -976,10 +1015,6 @@ pre {
     padding: 0rem 0rem 0rem 0.5rem;
 }
 
-.list-of-lessons{
-    /* padding: 0.4rem; */
-}
-
 .lessons {
     display: grid;
     grid-template-columns: 70% auto;
@@ -1011,7 +1046,7 @@ pre {
     padding: 0.2rem;
 }
 
-.remove-button{
+.remove-button {
     grid-row: 1/4;
     grid-column: 2;
     outline: none;
@@ -1039,17 +1074,19 @@ footer {
 /* Media Queries */
 
 @media only screen and (max-width: 1740px) {
-    #homepage-title {
-        font-size: 2px;
+
+    #image-holder p {
+        /* position: absolute;
+        bottom: 0; */
+        color: white;
+        margin: -30px;
+    }
+
+    #image-holder {
+        justify-content: center;
+        align-content: flex-end;
     }
 }
-
-@media only screen and (min-width: 1420px) {
-    header {
-        min-width: 1500px;
-    }
-}
-
 
 @media only screen and (min-width: 6520px) {
     .coin {
@@ -1168,5 +1205,22 @@ footer {
 
     100% {
         transform: rotate(calc(10*(180deg/11 + 36deg)));
+    }
+}
+
+
+@keyframes cssAnimation {
+    to {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    to {
+        width: 0;
+        height: 0;
+        visibility: hidden;
     }
 }
