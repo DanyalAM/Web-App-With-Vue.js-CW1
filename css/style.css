@@ -84,6 +84,10 @@ header {
     align-items: center;
 }
 
+.searchCenter::placeholder {
+    color: #ccc;
+}
+
 .searchContainer {
     font-family: 'Open Sans', sans-serif;
     display: inline-flex;
@@ -235,7 +239,7 @@ aside {
     font-size: 15px;
     margin-right: 20px;
     margin-top: 20px;
-    min-width: 200px;
+    min-width: 250px;
 
 }
 
@@ -256,26 +260,47 @@ aside ul li {
     border-radius: 10px;
 }
 
-.filter-label{
+.filter-label {
     padding: 10px;
     width: 100%;
 }
 
-.filter-label:hover{
+.filter-label:hover {
     cursor: pointer;
 }
 
-aside ul li:hover{
+aside ul li:hover {
     cursor: pointer;
 }
 
 .checkbox {
-    float: right;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-.checkbox:hover{
-    cursor: pointer;
+.checkbox:checked~i {
+    top: 15px;
+    border-top: none;
+    border-right: none;
+    height: 5px;
+    width: 15px;
+    transform: rotate(-45deg);
 }
+
+.filter-item {
+    position: relative;
+}
+
+.filter-item i {
+    position: absolute;
+    bottom: 9px;
+    right: 5px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ccc;
+}
+
 
 #slider-heading {
     padding-bottom: 15px;
@@ -647,7 +672,7 @@ pre {
     position: absolute;
     border-radius: 15px;
     box-sizing: border-box;
-    width: 450px;
+    width: 350px;
     height: 250px;
     background: rgb(130, 112, 14 4);
     background: rgb(198, 125, 255);
@@ -656,7 +681,7 @@ pre {
 }
 
 .review-box {
-    width: 450px;
+    width: 350px;
     height: 250px;
     /* padding: 10px; */
     box-sizing: border-box;
@@ -933,6 +958,11 @@ pre {
     object-fit: fill;
 }
 
+.product span {
+    text-align: right;
+    float: right;
+}
+
 .product .productName {
     border: 1px solid black;
     border-bottom: none;
@@ -949,7 +979,19 @@ pre {
     border: 1px solid black;
     border-bottom: none;
     padding: 0.2rem;
-    height: 60px;
+    /* height: 60px; */
+}
+
+.product .productTime {
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 0.2rem;
+}
+
+.product .productDuration {
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 0.2rem;
 }
 
 .product .productRating {
@@ -991,7 +1033,7 @@ pre {
     border: 1px solid #ccc;
 }
 
-.hide{ 
+.hide {
     display: none;
 }
 
@@ -1038,43 +1080,118 @@ pre {
 
 .lessons {
     display: grid;
-    grid-template-columns: 70% auto;
-    grid-row: auto auto auto;
+    grid-template-columns: auto auto auto;
+    /* grid-row: auto auto auto; */
     border: 1px solid #ccc;
-    padding: 0.6rem;
+    padding: 1rem;
+    margin-bottom: 30px;
+}
+
+.lessons input{
+    outline: none;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #ccc;
+    padding: 6px;
+    color: white;
+}
+
+.lessons input::placeholder{
+    color: white;
+}
+
+.lessons label{
+    color: black;
+    border-bottom: 1px solid #ccc;
+}
+
+.removal-labels-topic {
+    grid-row: 1/2;
+    grid-column: 2;
+    border-top: 1px solid #ccc;
 }
 
 .lesson-name {
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    grid-row: 1/2;
-    grid-column: 1;
+    grid-row: 2/3;
+    grid-column: 2;
     padding: 0.2rem;
+    /* text-align: center; */
+}
+
+.removal-labels-price {
+    grid-row: 3/4;
+    grid-column: 2;
 }
 
 .lesson-price {
     border-left: 1px solid #ccc;
-    grid-row: 2/3;
-    grid-column: 1;
+    grid-row: 4/5;
+    grid-column: 2;
     padding: 0.2rem;
+    /* text-align: center; */
+}
+
+.removal-labels-locations {
+    grid-row: 5/6;
+    grid-column: 2;
 }
 
 .lesson-location {
-    grid-row: 3/4;
-    grid-column: 1;
-    border-bottom: 1px solid #ccc;
+    grid-row: 6/7;
+    grid-column: 2;
     border-left: 1px solid #ccc;
     padding: 0.2rem;
+    /* text-align: center; */
 }
 
-.remove-button {
-    grid-row: 1/4;
+.removal-labels-time {
+    grid-row: 7/8;
     grid-column: 2;
+}
+
+.lesson-time {
+    grid-row: 8/9;
+    grid-column: 2;
+    /* text-align: center; */
+    border-left: 1px solid #ccc;
+}
+
+.removal-labels-duration{
+    grid-row: 9/10;
+    grid-column: 2;
+}
+
+.lesson-duration {
+    grid-row: 10/11;
+    grid-column: 2;
+    /* text-align: center; */
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.remove-button, .edit-button{
+    grid-row: 1/11;
+    grid-column: 3;
     outline: none;
     background: none;
     border: 1px solid #ccc;
 }
 
+.edit-button {
+    grid-column: 1;
+}
+
+.save-button{
+    grid-row: 12;
+    grid-column: 1/4;
+    background: none;
+    outline: none;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 5px;
+}
 /* Footer */
 
 footer {

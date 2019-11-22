@@ -68,9 +68,11 @@
             <p class="filter-topics">Location</p>
 
             <li class="filter-item" v-for="locations in location">
-                <label class="filter-label" v-bind:for="locations">{{locations}}</label>
-                <input class="checkbox" type="checkbox" v-bind:id="locations" v-bind:value="locations"
-                    v-model="locationFilterValue">
+                <label class="filter-label" v-bind:for="locations">{{locations}}
+                    <input class="checkbox" type="checkbox" v-bind:id="locations" v-bind:value="locations"
+                        v-model="locationFilterValue">
+                    <i></i>
+                </label>
             </li>
 
         </ul>
@@ -79,9 +81,11 @@
             <p class="filter-topics">Subject</p>
 
             <li class="filter-item" v-for="topics in topic">
-                <label class="filter-label" v-bind:for="topics">{{topics}}</label>
-                <input class="checkbox" type="checkbox" v-bind:id="topics" v-bind:value="topics"
-                    v-model="topicFilterValue">
+                <label class="filter-label" v-bind:for="topics">{{topics}}
+                    <input class="checkbox" type="checkbox" v-bind:id="topics" v-bind:value="topics"
+                        v-model="topicFilterValue">
+                    <i></i>
+                </label>
             </li>
 
         </ul>
@@ -121,29 +125,41 @@
             <div class="rating-error" v-show="alreadyRated">
                 Already Rated
             </div>
-            <div id="totalProductsFound" v-if="!searchApplied"> There are in total {{ productsToDisplay.length }} courses. Among these,</div>
-            <div id="totalProductsFound" v-else> Your search of <b>{{ curSearch }}</b> returned {{ productsToDisplay.length }} products</div>
+            <div id="totalProductsFound" v-if="!searchApplied"> There are in total {{ productsToDisplay.length }}
+                courses. Among these,</div>
+            <div id="totalProductsFound" v-else> Your search of <b>{{ curSearch }}</b> returned
+                {{ productsToDisplay.length }} products</div>
 
 
             <!-- Print out the products in our storage array -->
             <div class="product" v-for="courses in productsToDisplay">
                 <div class="productImage">
-                    <img v-bind:src="courses.image" alt="">
+                    <img v-bind:src="courses.Image" alt="">
                 </div>
 
                 <div class="productName">
                     <b> {{ Object.keys(course[0])[0] }}: </b>
-                    {{ courses.Topic }}
+                    <span>{{ courses.Topic }}</span>
                 </div>
 
                 <div class="productPrice">
                     <b> {{ Object.keys(course[0])[2] }}: </b>
-                    £{{ courses.Price}}
+                    <span>£{{ courses.Price}}</span>
                 </div>
 
                 <div class="productLocation">
                     <b> {{ Object.keys(course[0])[1] }}: </b>
-                    {{ courses.Location }}
+                    <span>{{ courses.Location }}</span>
+                </div>
+
+                <div class="productTime">
+                    <b> {{ Object.keys(course[0])[3] }}: </b>
+                    <span>{{ courses.Time }} Hours</span>
+                </div>
+
+                <div class="productDuration">
+                    <b> {{ Object.keys(course[0])[4] }}: </b>
+                    <span>{{ courses.Duration }} Weeks</span>
                 </div>
 
                 <!-- Print out the current rating stars (only coloured stars)-->

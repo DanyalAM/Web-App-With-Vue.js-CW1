@@ -71,10 +71,26 @@
                 <h1 class="myAccount-headings">Your Taught Lessons</h1>
 
                 <div class="lessons" v-for="(product, index) in providerProducts">
-                    <div class="lesson-name">{{product.Topic}}</div>
-                    <div class="lesson-price">£{{product.Price}}</div>
-                    <div class="lesson-location">{{product.Location}}</div>
+                    <button class="edit-button" v-on:click="editProduct()">Edit</button>
+
+                    <label class="removal-labels-topic" for="lsn-name">Topic</label>
+                    <input class="lesson-name" id="lsn-name" type="text" v-model="newValTopic[index]" v-bind:placeholder="product.Topic" v-bind:disabled="allowDisallow">
+
+                    <label class="removal-labels-price" for="lsn-price">Price</label>
+                    <input class="lesson-price" id="lsn-price" type="text" v-model="newValPrice[index]" v-bind:placeholder="product.Price" v-bind:disabled="allowDisallow">
+
+                    <label class="removal-labels-location" for="lsn-location">Location</label>
+                    <input class="lesson-location" id="lsn-location" type="text" v-model="newValLocation[index]" v-bind:placeholder="product.Location" v-bind:disabled="allowDisallow">
+
+                    <label class="removal-labels-time" for="lsn-time">Time</label>
+                    <input class="lesson-time" id="lsn-time" type="number" v-model="newValTime[index]" v-bind:placeholder="product.Time" v-bind:disabled="allowDisallow">
+
+                    <label class="removal-labels-duration" for="lsn-duration">Duration</label>
+                    <input class="lesson-duration" id="lsn-duration" type="number" v-model="newValDuration[index]" v-bind:placeholder="product.Duration" v-bind:disabled="allowDisallow">
+
                     <button class="remove-button" v-on:click="removeProduct(index)">Remove</button>
+
+                    <button class="save-button" v-show="showSaveButton" v-on:click="saveProduct(product.productID, index)">Save</button>
                 </div>
 
             </div>
@@ -110,6 +126,36 @@
                         </div>
 
                         <p class="register-subject-form-errors" v-show="locationError">{{locationErrorText}}</p>
+
+                        <div class="form-items">
+                            <label for="register-time">Time</label>
+                            <input type="number" id="register-time" placeholder="Time" v-model="subjectInfo.Time"
+                                min="1">
+                        </div>
+
+                        <p class="register-subject-form-errors" v-show="timeError">{{timeErrorText}}</p>
+
+                        <div class="form-items">
+                            <label for="register-duration">Duration</label>
+                            <input type="number" id="register-duration" placeholder="Duration"
+                                v-model="subjectInfo.Duration" min="1">
+                        </div>
+
+                        <p class="register-subject-form-errors" v-show="durationError">{{durationErrorText}}</p>
+
+                        <div class="sorting-holder">
+                            <select v-model="imageSelected">
+                                <option disabled value="">Image Choices</option>
+                                <option value="/image/mathsIcon.png">Math</option>
+                                <option value="/image/englishIcon.png">English</option>
+                                <option value="/image/pianoIcon.png">Music</option>
+                                <option value="/image/csIcon.png">Computer Science</option>
+                                <option value="/image/random.png">None of the above</option>
+                            </select>
+                        </div>
+
+                        <p class="register-subject-form-errors" v-show="imageError">{{imageErrorText}}</p>
+
                     </div>
 
                     <input type="submit" value="Submit">

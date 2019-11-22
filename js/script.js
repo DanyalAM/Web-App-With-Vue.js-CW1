@@ -301,7 +301,7 @@ var ourProducts = new Vue({
             course:
                 [
                     {
-                        'Topic': 'Math', 'Location': 'Hendon', 'Price': 100, 'AvgRating': 0, 'Raters': 0, 'productID': 1, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Hendon', 'Price': 100, 'Time': 2, 'Duration': 3, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 1, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -311,7 +311,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Math', 'Location': 'Colindale', 'Price': 80, 'AvgRating': 0, 'Raters': 0, 'productID': 2, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Colindale', 'Price': 80, 'Time': 1, 'Duration': 4, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 2, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -321,7 +321,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Math', 'Location': 'Brent Cross', 'Price': 90, 'AvgRating': 0, 'Raters': 0, 'productID': 3, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Brent Cross', 'Price': 90, 'Time': 3, 'Duration': 3, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 3, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -331,7 +331,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Math', 'Location': 'Golders Green', 'Price': 120, 'AvgRating': 0, 'Raters': 0, 'productID': 4, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Golders Green', 'Price': 120, 'Time': 6, 'Duration': 2, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 4, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -341,7 +341,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Hendon', 'Price': 110, 'AvgRating': 0, 'Raters': 0, 'productID': 5, 'Ratings':
+                        'Topic': 'English', 'Location': 'Hendon', 'Price': 110, 'Time': 1, 'Duration': 10, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 5, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -351,7 +351,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Colindale', 'Price': 90, 'AvgRating': 0, 'Raters': 0, 'productID': 6, 'Ratings':
+                        'Topic': 'English', 'Location': 'Colindale', 'Price': 90, 'Time': 2, 'Duration': 3, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 6, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -361,7 +361,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Brent Cross', 'Price': 90, 'AvgRating': 0, 'Raters': 0, 'productID': 7, 'Ratings':
+                        'Topic': 'English', 'Location': 'Brent Cross', 'Price': 90, 'Time': 2, 'Duration': 3, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 7, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -371,7 +371,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Golders Green', 'Price': 130, 'AvgRating': 0, 'Raters': 0, 'productID': 8, 'Ratings':
+                        'Topic': 'English', 'Location': 'Golders Green', 'Price': 130, 'Time': 2, 'Duration': 1, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 8, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -381,7 +381,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Piano', 'Location': 'Hendon', 'Price': 120, 'AvgRating': 0, 'Raters': 0, 'productID': 9, 'Ratings':
+                        'Topic': 'Piano', 'Location': 'Hendon', 'Price': 120, 'Time': 2, 'Duration': 3, 'Image': '/image/pianoIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 9, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -391,7 +391,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Piano', 'Location': 'Golders Green', 'Price': 140, 'AvgRating': 0, 'Raters': 0, 'productID': 10, 'Ratings':
+                        'Topic': 'Piano', 'Location': 'Golders Green', 'Price': 140, 'Time': 2, 'Duration': 3, 'Image': '/image/pianoIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 10, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -525,6 +525,9 @@ var userPage = new Vue({
             Topic: null,
             Location: null,
             Price: 100,
+            Time: 0,
+            Duration: 0,
+            Image: null,
             Rating: 0,
             AvgRating: 0,
             Raters: 0,
@@ -544,7 +547,23 @@ var userPage = new Vue({
         priceError: false,
         priceErrorText: '',
         locationError: false,
-        locationErrorText: ''
+        locationErrorText: '',
+        timeError: false,
+        timeErrorText: '',
+        durationError: false,
+        durationErrorText: '',
+        imageError: false,
+        imageErrorText: '',
+        imageSelected: '',
+        allowDisallow: true,
+        showSaveButton: false,
+        idValue: [],
+        newValTopic: [],
+        newValPrice: [],
+        newValLocation: [],
+        newValTime: [],
+        newValDuration: [],
+
     },
     mounted() {
         this.confirmName();
@@ -555,7 +574,7 @@ var userPage = new Vue({
         verifyLesson: function (e) {
             if (!this.subjectInfo.Topic) {
                 this.topicError = true;
-                this.topicErrorText = "Please enter the topic of your course"
+                this.topicErrorText = "Please enter the topic of your course";
                 this.allCorrect[0] = false;
             } else {
                 this.topicError = false;
@@ -565,7 +584,7 @@ var userPage = new Vue({
 
             if (!this.subjectInfo.Price) {
                 this.priceError = true;
-                this.priceErrorText = "Please enter the price of your course"
+                this.priceErrorText = "Please enter the price of your course";
                 this.allCorrect[1] = false;
             } else {
                 this.priceError = false;
@@ -575,16 +594,45 @@ var userPage = new Vue({
 
             if (!this.subjectInfo.Location) {
                 this.locationError = true;
-                this.locationErrorText = "Please enter the location of your course"
+                this.locationErrorText = "Please enter the location of your course";
                 this.allCorrect[2] = false;
             } else {
                 this.locationError = false;
                 this.locationErrorText = "";
                 this.allCorrect[2] = true;
-
             }
 
-            if (this.allCorrect.filter(item => item === true).length > 2) {
+            if (!this.subjectInfo.Time) {
+                this.timeError = true;
+                this.timeErrorText = "Please choose a time length for your class";
+                this.allCorrect[3] = false;
+            } else {
+                this.timeError = false;
+                this.timeErrorText = '';
+                this.allCorrect[3] = true;
+            }
+
+            if (!this.subjectInfo.Duration) {
+                this.durationError = true;
+                this.durationErrorText = "Please choose the length of your full course";
+                this.allCorrect[4] = false;
+            } else {
+                this.durationError = false;
+                this.durationErrorText = '';
+                this.allCorrect[4] = true;
+            }
+
+            if (!this.imageSelected) {
+                this.imageError = true;
+                this.imageErrorText = "Please select an image for your product";
+                this.allCorrect[5] = false;
+            } else {
+                this.imageError = false;
+                this.imageErrorText = "";
+                this.allCorrect[5] = true;
+            }
+
+            if (this.allCorrect.filter(item => item === true).length > 5) {
                 var currentUserEmail = JSON.parse(localStorage.getItem('currentUser')); //current user email
                 //find user full details with that email
                 var found = userAccounts.find(element => element.email == currentUserEmail);
@@ -599,11 +647,13 @@ var userPage = new Vue({
 
                     //number has to be parsed or it saves as string
                     this.subjectInfo.Price = parseInt(this.subjectInfo.Price);
+                    this.subjectInfo.Topic = this.formatInfo(this.subjectInfo.Topic);
+                    this.subjectInfo.Location = this.formatInfo(this.subjectInfo.Location);
+                    this.subjectInfo.Image = this.imageSelected;
                     servicesProvided.push(this.subjectInfo);
                     localStorage.setItem('servicesProvided', JSON.stringify(servicesProvided));
                     e.submit();
                 }
-
             }
 
             e.preventDefault();
@@ -659,11 +709,53 @@ var userPage = new Vue({
             localStorage.setItem('servicesProvided', JSON.stringify(this.userProducts));
 
             this.providerProducts.splice(removalPos, 1);
-            window.location.reload();
+            this.displayUserLessons();
+        },
+        editProduct: function () {
+            this.allowDisallow = false;
+            this.showSaveButton = true;
+        },
+        saveProduct: function (prodID, indx) {
+            var editedProductIndex = servicesProvided.map(function (item) { return item.productID }).indexOf(prodID);
+            var currentProduct = servicesProvided[editedProductIndex];
+
+            //if valus is not empty and doesnt have only spaces then add new value
+            if(this.newValTopic[indx] != undefined && this.newValTopic[indx].trim() != ''){
+               currentProduct.Topic = this.newValTopic[indx];
+            }
+
+            if(this.newValPrice[indx] != undefined && this.newValPrice[indx].trim() != ''){
+                currentProduct.Price = this.newValPrice[indx];
+            }
+
+            if(this.newValLocation[indx] != undefined && this.newValLocation[indx].trim() != ''){
+                currentProduct.Location = this.newValLocation[indx];
+            }
+
+            if(this.newValTime[indx] != undefined && this.newValTime[indx].trim() != ''){
+                currentProduct.Time = this.newValTime[indx];
+            }
+
+            if(this.newValDuration[indx] != undefined && this.newValDuration[indx].trim() != ''){
+                currentProduct.Duration = this.newValDuration[indx];
+            }
+
+            //put all these new values back into the courses array
+            servicesProvided[editedProductIndex] = currentProduct;
+
+            //store the updated courses array in localstorage
+            localStorage.setItem('servicesProvided', JSON.stringify(servicesProvided));
+
+            this.displayUserLessons();
+            this.allowDisallow = true;
+            this.showSaveButton = false;
+
+        },
+        formatInfo: function (s) {
+            return s.replace(/^.{1}/g, s[0].toUpperCase());
         }
     }
 })
-
 
 var asideMenu = new Vue({
     el: '#aside',
@@ -1008,7 +1100,7 @@ var pageHeader = new Vue({
             //turn that array into a word or sentence
             for (var i = 0; i < this.listOfWords.length; i++) {
                 this.searchedQuery += this.listOfWords[i] + " ";
-                ourProducts.curSearch += this.listOfWords[i] + " "; 
+                ourProducts.curSearch += this.listOfWords[i] + " ";
             }
 
             this.currentSearch = '';
