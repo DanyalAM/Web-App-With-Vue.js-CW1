@@ -123,10 +123,12 @@
             </div>
 
             <div class="rating-error" v-show="alreadyRated">
-                Already Rated
+                {{ratingErrorMsg}}
             </div>
+
+
             <div id="totalProductsFound" v-if="!searchApplied"> There are in total {{ productsToDisplay.length }}
-                courses. Among these,</div>
+                courses.</div>
             <div id="totalProductsFound" v-else> Your search of <b>{{ curSearch }}</b> returned
                 {{ productsToDisplay.length }} products</div>
 
@@ -134,7 +136,7 @@
             <!-- Print out the products in our storage array -->
             <div class="product" v-for="courses in productsToDisplay">
                 <div class="productImage">
-                    <img v-bind:src="courses.Image" alt="">
+                    <img v-bind:src="courses.Image" alt="Image">
                 </div>
 
                 <div class="productName">
@@ -168,10 +170,12 @@
                 so we know which product was rated -->
 
                 <div class="productRating">
-                    <i class="fa fa-star checked rating" v-for="(rating, index) in courses.AvgRating"
-                        v-on:click="likeProduct(index, courses.productID)"></i>
-                    <i class="fa fa-star unchecked rating" v-for="(rating, index) in (5 - courses.AvgRating)"
-                        v-on:click="likeProduct(index + courses.AvgRating, courses.productID)"></i>
+                    <div class="starsHolder">
+                        <i class="fa fa-star rating checked" v-for="(rating, index) in (courses.AvgRating)"
+                            v-on:click="likeProduct(index, courses.productID)"></i>
+                        <i class="fa fa-star rating unchecked" v-for="(rating, index) in (5 - courses.AvgRating)"
+                            v-on:click="likeProduct(index + courses.AvgRating, courses.productID)"></i>
+                    </div>
                     <p>{{courses.AvgRating}} Avg. Rating by {{courses.Raters}} users</p>
                 </div>
             </div>

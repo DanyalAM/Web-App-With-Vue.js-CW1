@@ -20,7 +20,7 @@
         </div>
 
         <div class="searchCenter">
-            <form class="searchContainer">
+            <form class="searchContainer" v-on:submit="userSearched" action="../page/product.html">
                 <i class="fa fa-search searchIcon"></i>
                 <input class="searchBox" type="text" name="search" placeholder="Search...">
                 <input type="submit" value="Search" class="searchButton">
@@ -111,7 +111,7 @@
                 </div>
                 <button type=submit>Submit</button>
             </form>
-              
+
 
             <div class="password-error-holder" v-show="passwordWrong">
                 <div class="error-message-box-heading">
@@ -141,7 +141,7 @@
     <footer>
         Footer
     </footer>
-    
+
     <script src="../js/script.js"></script>
 
 </body>

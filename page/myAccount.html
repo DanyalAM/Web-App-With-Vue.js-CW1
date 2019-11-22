@@ -21,7 +21,7 @@
         </div>
 
         <div class="searchCenter">
-            <form class="searchContainer">
+            <form class="searchContainer" v-on:submit="userSearched" action="../page/product.html">
                 <i class="fa fa-search searchIcon"></i>
                 <input class="searchBox" type="text" name="search" placeholder="Search...">
                 <input type="submit" value="Search" class="searchButton">
@@ -71,26 +71,45 @@
                 <h1 class="myAccount-headings">Your Taught Lessons</h1>
 
                 <div class="lessons" v-for="(product, index) in providerProducts">
-                    <button class="edit-button" v-on:click="editProduct()">Edit</button>
 
-                    <label class="removal-labels-topic" for="lsn-name">Topic</label>
-                    <input class="lesson-name" id="lsn-name" type="text" v-model="newValTopic[index]" v-bind:placeholder="product.Topic" v-bind:disabled="allowDisallow">
+                    <div class="edit-input-holder">
+                        <label class="removal-labels-topic" for="lsn-name">Topic</label>
+                        <input class="lesson-name" id="lsn-name" type="text" v-model="newValTopic[index]"
+                            v-bind:placeholder="product.Topic" v-bind:disabled="allowDisallow">
+                    </div>
 
-                    <label class="removal-labels-price" for="lsn-price">Price</label>
-                    <input class="lesson-price" id="lsn-price" type="text" v-model="newValPrice[index]" v-bind:placeholder="product.Price" v-bind:disabled="allowDisallow">
+                    <div class="edit-input-holder">
+                        <label class="removal-labels-price" for="lsn-price">Price</label>
+                        <input class="lesson-price" id="lsn-price" type="text" v-model="newValPrice[index]"
+                            v-bind:placeholder="product.Price" v-bind:disabled="allowDisallow">
+                    </div>
 
-                    <label class="removal-labels-location" for="lsn-location">Location</label>
-                    <input class="lesson-location" id="lsn-location" type="text" v-model="newValLocation[index]" v-bind:placeholder="product.Location" v-bind:disabled="allowDisallow">
+                    <div class="edit-input-holder">
+                        <label class="removal-labels-location" for="lsn-location">Location</label>
+                        <input class="lesson-location" id="lsn-location" type="text" v-model="newValLocation[index]"
+                            v-bind:placeholder="product.Location" v-bind:disabled="allowDisallow">
+                    </div>
 
-                    <label class="removal-labels-time" for="lsn-time">Time</label>
-                    <input class="lesson-time" id="lsn-time" type="number" v-model="newValTime[index]" v-bind:placeholder="product.Time" v-bind:disabled="allowDisallow">
+                    <div class="edit-input-holder">
+                        <label class="removal-labels-time" for="lsn-time">Time</label>
+                        <input class="lesson-time" id="lsn-time" type="number" v-model="newValTime[index]"
+                            v-bind:placeholder="product.Time" v-bind:disabled="allowDisallow">
+                    </div>
 
-                    <label class="removal-labels-duration" for="lsn-duration">Duration</label>
-                    <input class="lesson-duration" id="lsn-duration" type="number" v-model="newValDuration[index]" v-bind:placeholder="product.Duration" v-bind:disabled="allowDisallow">
+                    <div class="edit-input-holder">
+                        <label class="removal-labels-duration" for="lsn-duration">Duration</label>
+                        <input class="lesson-duration" id="lsn-duration" type="number" v-model="newValDuration[index]"
+                            v-bind:placeholder="product.Duration" v-bind:disabled="allowDisallow">
+                    </div>
 
-                    <button class="remove-button" v-on:click="removeProduct(index)">Remove</button>
+                    <div class="edit-buttons-holder">
+                        <button class="edit-button" v-on:click="editProduct(index)">Edit</button>
 
-                    <button class="save-button" v-show="showSaveButton" v-on:click="saveProduct(product.productID, index)">Save</button>
+                        <button class="remove-button" v-on:click="removeProduct(index)">Remove</button>
+
+                        <button class="save-button" v-show="showSaveButton[index]"
+                            v-on:click="saveProduct(product.productID, index, this)">Save</button>
+                    </div>
                 </div>
 
             </div>
@@ -98,8 +117,8 @@
             <div class="service-form">
                 <h1 class="myAccount-headings">Add More Services</h1>
 
-                <form class="user-service-form" ref="form" id="service-form" v-on:keyup.enter="verifyLesson"
-                    action="myAccount.html" @submit="verifyLesson" novalidate="true">
+                <form class="user-service-form" ref="form" id="service-form" action="myAccount.html"
+                    @submit="verifyLesson" v-on:keyup.enter="verifyLesson">
 
 
                     <div class="input-holder">
@@ -146,11 +165,11 @@
                         <div class="sorting-holder">
                             <select v-model="imageSelected">
                                 <option disabled value="">Image Choices</option>
-                                <option value="/image/mathsIcon.png">Math</option>
-                                <option value="/image/englishIcon.png">English</option>
-                                <option value="/image/pianoIcon.png">Music</option>
-                                <option value="/image/csIcon.png">Computer Science</option>
-                                <option value="/image/random.png">None of the above</option>
+                                <option value="../image/mathsIcon.png">Math</option>
+                                <option value="../image/englishIcon.png">English</option>
+                                <option value="../image/pianoIcon.png">Music</option>
+                                <option value="../image/csIcon.png">Computer Science</option>
+                                <option value="../image/random.png">None of the above</option>
                             </select>
                         </div>
 
@@ -158,7 +177,7 @@
 
                     </div>
 
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" ref="subBtn">
                 </form>
 
             </div>

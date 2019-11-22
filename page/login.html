@@ -20,7 +20,7 @@
         </div>
 
         <div class="searchCenter">
-            <form class="searchContainer">
+            <form class="searchContainer" v-on:submit="userSearched" action="../page/product.html">
                 <i class="fa fa-search searchIcon"></i>
                 <input class="searchBox" type="text" name="search" placeholder="Search...">
                 <input type="submit" value="Search" class="searchButton">
@@ -100,7 +100,7 @@
     <footer>
         Footer
     </footer>
-    
+
     <script src="../js/script.js"></script>
 
 </body>

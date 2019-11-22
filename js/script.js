@@ -243,7 +243,7 @@ var loginForm = new Vue({
                     this.incorrectInfo = true;
                 } else {
                     this.incorrectInfo = false;
-                    localStorage.setItem('currentUser', JSON.stringify(this.loginEmail));
+                    localStorage.setItem('currentUser', JSON.stringify(this.loginEmail.toLowerCase()));
                     e.submit();
                 }
             }
@@ -301,7 +301,7 @@ var ourProducts = new Vue({
             course:
                 [
                     {
-                        'Topic': 'Math', 'Location': 'Hendon', 'Price': 100, 'Time': 2, 'Duration': 3, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 1, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Hendon', 'Price': 100, 'Time': 2, 'Duration': 3, 'Image': '../image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 1, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -311,7 +311,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Math', 'Location': 'Colindale', 'Price': 80, 'Time': 1, 'Duration': 4, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 2, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Colindale', 'Price': 80, 'Time': 1, 'Duration': 4, 'Image': '../image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 2, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -321,7 +321,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Math', 'Location': 'Brent Cross', 'Price': 90, 'Time': 3, 'Duration': 3, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 3, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Brent Cross', 'Price': 90, 'Time': 3, 'Duration': 3, 'Image': '../image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 3, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -331,7 +331,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Math', 'Location': 'Golders Green', 'Price': 120, 'Time': 6, 'Duration': 2, 'Image': '/image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 4, 'Ratings':
+                        'Topic': 'Math', 'Location': 'Golders Green', 'Price': 120, 'Time': 6, 'Duration': 2, 'Image': '../image/mathsIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 4, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -341,7 +341,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Hendon', 'Price': 110, 'Time': 1, 'Duration': 10, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 5, 'Ratings':
+                        'Topic': 'English', 'Location': 'Hendon', 'Price': 110, 'Time': 1, 'Duration': 10, 'Image': '../image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 5, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -351,7 +351,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Colindale', 'Price': 90, 'Time': 2, 'Duration': 3, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 6, 'Ratings':
+                        'Topic': 'English', 'Location': 'Colindale', 'Price': 90, 'Time': 2, 'Duration': 3, 'Image': '../image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 6, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -361,7 +361,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Brent Cross', 'Price': 90, 'Time': 2, 'Duration': 3, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 7, 'Ratings':
+                        'Topic': 'English', 'Location': 'Brent Cross', 'Price': 90, 'Time': 2, 'Duration': 3, 'Image': '../image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 7, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -371,7 +371,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'English', 'Location': 'Golders Green', 'Price': 130, 'Time': 2, 'Duration': 1, 'Image': '/image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 8, 'Ratings':
+                        'Topic': 'English', 'Location': 'Golders Green', 'Price': 130, 'Time': 2, 'Duration': 1, 'Image': '../image/englishIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 8, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -381,7 +381,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Piano', 'Location': 'Hendon', 'Price': 120, 'Time': 2, 'Duration': 3, 'Image': '/image/pianoIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 9, 'Ratings':
+                        'Topic': 'Piano', 'Location': 'Hendon', 'Price': 120, 'Time': 2, 'Duration': 3, 'Image': '../image/pianoIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 9, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -391,7 +391,7 @@ var ourProducts = new Vue({
                         }
                     },
                     {
-                        'Topic': 'Piano', 'Location': 'Golders Green', 'Price': 140, 'Time': 2, 'Duration': 3, 'Image': '/image/pianoIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 10, 'Ratings':
+                        'Topic': 'Piano', 'Location': 'Golders Green', 'Price': 140, 'Time': 2, 'Duration': 3, 'Image': '../image/pianoIcon.png', 'AvgRating': 0, 'Raters': 0, 'productID': 10, 'Ratings':
                         {
                             'Rated5': 0,
                             'Rated4': 0,
@@ -409,74 +409,87 @@ var ourProducts = new Vue({
             sortSelected: '',
             searchApplied: false,
             curSearch: '',
+            ratingErrorMsg: '',
         }
     },
     methods: {
         likeProduct: function (index, prodID) {
 
-            this.alreadyRated = false;
-            //get the logged in user
-            var currentUserEmail = JSON.parse(localStorage.getItem('currentUser'));
+            console.log(index);
+            if (localStorage.getItem('currentUser') !== null) {
+                //Here we have to reformat the index because in our css
+                //we change the direction of the stars
+                //so the index is weirdly numbered       
 
-            //get their index in the array
-            var loggedInUserIndex = userAccounts.map(function (item) { return item.email }).indexOf(currentUserEmail);
+                this.alreadyRated = false;
+                //get the logged in user
+                var currentUserEmail = JSON.parse(localStorage.getItem('currentUser'));
 
-            for (var c = 0; c < userAccounts[loggedInUserIndex].userCrumbs.length; c++) {
-                // if user's crumbs match the product ID then theyve liked it before
+                //get their index in the array
+                var loggedInUserIndex = userAccounts.map(function (item) { return item.email }).indexOf(currentUserEmail);
 
-                if (userAccounts[loggedInUserIndex].userCrumbs[c] == prodID) {
-                    //exit loop if crumb is found
-                    this.crumbFound = true;
-                    this.alreadyRated = true;
-                    setTimeout(() => { this.alreadyRated = false }, 3000)
-                } else {
-                    this.crumbFound = false;
+                for (var c = 0; c < userAccounts[loggedInUserIndex].userCrumbs.length; c++) {
+                    // if user's crumbs match the product ID then theyve liked it before
+
+                    if (userAccounts[loggedInUserIndex].userCrumbs[c] == prodID) {
+                        //exit loop if crumb is found
+                        this.crumbFound = true;
+                        this.ratingErrorMsg = 'You have already rated this product';
+                        this.alreadyRated = true;
+                        setTimeout(() => { this.alreadyRated = false }, 3000);
+                        break;
+                    } else {
+                        this.crumbFound = false;
+                    }
+
                 }
 
-            }
+                //run only if the user hasn't liked this product before
+                if (!this.crumbFound) {
+                    //get index of the rated object
+                    var ratedObjectIndex = servicesProvided.map(function (item) { return item.productID }).indexOf(prodID);
 
-            //run only if the user hasn't liked this product before
-            if (!this.crumbFound) {
-                //get index of the rated object
-                var ratedObjectIndex = servicesProvided.map(function (item) { return item.productID }).indexOf(prodID);
+                    //rated item
+                    var ratedItem = servicesProvided[ratedObjectIndex];
 
-                //rated item
-                var ratedItem = servicesProvided[ratedObjectIndex];
+                    //what has the user rated? (Rated5, Rated4, Rated3, Rated2, Rated1)
+                    var userRatingProperty = ("Rated" + (index + 1));
 
-                //what has the user rated? (Rated5, Rated4, Rated3, Rated2, Rated1)
-                var userRatingProperty = ("Rated" + (index + 1));
+                    //Get the rating property for user's rating number
+                    ratedItem.Ratings[userRatingProperty]++;
 
-                //Get the rating property for user's rating number
-                ratedItem.Ratings[userRatingProperty]++;
-
-                //multiply all ratings numbers by their rated value
-                //and divide them by all the ratings combined 
-                //this will give a float average so we have to convert to a whole number
-                ratedItem.AvgRating = Math.floor((5 * ratedItem.Ratings['Rated5']
-                    + 4 * ratedItem.Ratings['Rated4']
-                    + 3 * ratedItem.Ratings['Rated3']
-                    + 2 * ratedItem.Ratings['Rated2']
-                    + 1 * ratedItem.Ratings['Rated1'])
-                    / (ratedItem.Ratings['Rated5']
-                        + ratedItem.Ratings['Rated4']
-                        + ratedItem.Ratings['Rated3']
-                        + ratedItem.Ratings['Rated2']
-                        + ratedItem.Ratings['Rated1']));
+                    //multiply all ratings numbers by their rated value
+                    //and divide them by all the ratings combined 
+                    //this will give a float average so we have to convert to a whole number
+                    ratedItem.AvgRating = Math.floor((5 * ratedItem.Ratings['Rated5']
+                        + 4 * ratedItem.Ratings['Rated4']
+                        + 3 * ratedItem.Ratings['Rated3']
+                        + 2 * ratedItem.Ratings['Rated2']
+                        + 1 * ratedItem.Ratings['Rated1'])
+                        / (ratedItem.Ratings['Rated5']
+                            + ratedItem.Ratings['Rated4']
+                            + ratedItem.Ratings['Rated3']
+                            + ratedItem.Ratings['Rated2']
+                            + ratedItem.Ratings['Rated1']));
 
 
-                //Update the number of people who have rated
-                ratedItem.Raters++;
+                    //Update the number of people who have rated
+                    ratedItem.Raters++;
 
-                // update old item and save
-                servicesProvided[ratedObjectIndex] = ratedItem;
-                localStorage.setItem('servicesProvided', JSON.stringify(servicesProvided));
+                    // update old item and save
+                    servicesProvided[ratedObjectIndex] = ratedItem;
+                    localStorage.setItem('servicesProvided', JSON.stringify(servicesProvided));
 
-                //update the products theyve liked
-                userAccounts[loggedInUserIndex].userCrumbs.push(prodID);
+                    //update the products theyve liked
+                    userAccounts[loggedInUserIndex].userCrumbs.push(prodID);
 
-                //add back the data to localstorage
-                localStorage.setItem('userInfo', JSON.stringify(userAccounts));
-
+                    //add back the data to localstorage
+                    localStorage.setItem('userInfo', JSON.stringify(userAccounts));
+                }
+            }else{
+                this.ratingErrorMsg = "You need to login to rate";
+                this.alreadyRated = true;
+                setTimeout(() => { this.alreadyRated = false }, 3000);
             }
         },
         sortUpdated: function () {
@@ -556,7 +569,7 @@ var userPage = new Vue({
         imageErrorText: '',
         imageSelected: '',
         allowDisallow: true,
-        showSaveButton: false,
+        showSaveButton: [],
         idValue: [],
         newValTopic: [],
         newValPrice: [],
@@ -653,6 +666,7 @@ var userPage = new Vue({
                     servicesProvided.push(this.subjectInfo);
                     localStorage.setItem('servicesProvided', JSON.stringify(servicesProvided));
                     e.submit();
+
                 }
             }
 
@@ -711,32 +725,33 @@ var userPage = new Vue({
             this.providerProducts.splice(removalPos, 1);
             this.displayUserLessons();
         },
-        editProduct: function () {
+        editProduct: function (indx) {
             this.allowDisallow = false;
-            this.showSaveButton = true;
+            this.showSaveButton[indx] = true;
+            this.displayUserLessons();
         },
-        saveProduct: function (prodID, indx) {
+        saveProduct: function (prodID, indx, td) {
             var editedProductIndex = servicesProvided.map(function (item) { return item.productID }).indexOf(prodID);
             var currentProduct = servicesProvided[editedProductIndex];
 
             //if valus is not empty and doesnt have only spaces then add new value
-            if(this.newValTopic[indx] != undefined && this.newValTopic[indx].trim() != ''){
-               currentProduct.Topic = this.newValTopic[indx];
+            if (this.newValTopic[indx] != undefined && this.newValTopic[indx].trim() != '') {
+                currentProduct.Topic = this.newValTopic[indx];
             }
 
-            if(this.newValPrice[indx] != undefined && this.newValPrice[indx].trim() != ''){
+            if (this.newValPrice[indx] != undefined && this.newValPrice[indx].trim() != '') {
                 currentProduct.Price = this.newValPrice[indx];
             }
 
-            if(this.newValLocation[indx] != undefined && this.newValLocation[indx].trim() != ''){
+            if (this.newValLocation[indx] != undefined && this.newValLocation[indx].trim() != '') {
                 currentProduct.Location = this.newValLocation[indx];
             }
 
-            if(this.newValTime[indx] != undefined && this.newValTime[indx].trim() != ''){
+            if (this.newValTime[indx] != undefined && this.newValTime[indx].trim() != '') {
                 currentProduct.Time = this.newValTime[indx];
             }
 
-            if(this.newValDuration[indx] != undefined && this.newValDuration[indx].trim() != ''){
+            if (this.newValDuration[indx] != undefined && this.newValDuration[indx].trim() != '') {
                 currentProduct.Duration = this.newValDuration[indx];
             }
 
@@ -748,7 +763,7 @@ var userPage = new Vue({
 
             this.displayUserLessons();
             this.allowDisallow = true;
-            this.showSaveButton = false;
+            this.showSaveButton[indx] = false;
 
         },
         formatInfo: function (s) {

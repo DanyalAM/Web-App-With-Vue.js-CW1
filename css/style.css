@@ -784,7 +784,8 @@ pre {
     box-sizing: border-box;
 }
 
-.form-items>select {
+.form-items>select,
+.sorting-holder>select {
     display: block;
     margin-bottom: 10px;
     padding: 0;
@@ -805,6 +806,10 @@ pre {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
+}
+
+.sorting-holder>select {
+    margin-left: -5px;
 }
 
 .form-items>label {
@@ -873,6 +878,7 @@ pre {
 
 
 .password-error-holder {
+    position: relative;
     display: grid;
     grid-template-rows: 10% auto;
     grid-template-columns: auto 10%;
@@ -884,7 +890,9 @@ pre {
     margin-top: -140px;
     margin-left: -380px;
     border-radius: 7px;
-    background: red;
+    background: #f44336;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .5));
+
 }
 
 .error-message-box-heading {
@@ -910,7 +918,7 @@ pre {
     width: 0;
     height: 0;
     border-top: 25px solid transparent;
-    border-left: 50px solid red;
+    border-left: 50px solid #f44336;
     border-bottom: 25px solid transparent;
     grid-row: 2;
     grid-column: 2/3;
@@ -996,9 +1004,17 @@ pre {
 
 .product .productRating {
     display: grid;
-    grid-template-columns: auto auto auto auto auto 1fr;
+    grid-template-columns: 30% 70%;
+    justify-content: space-between;
     border: 1px solid black;
     padding: 0.2rem;
+}
+
+.product .productRating .starsHolder {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: center;
+
 }
 
 .productRating p {
@@ -1006,21 +1022,44 @@ pre {
     font-size: 15px;
 }
 
+.rating {
+    font-size: 20px;
+    color: #313131;
+    transition: 0.3s all;
+}
+
 .checked {
     color: orange;
 }
 
-.unchecked {
-    color: black;
+.checked:hover .checked {
+    color: #313131;
 }
 
-.rating:hover {
-    cursor: pointer;
-}
-
-.rating:hover~.rating {
+.productRating .rating:hover {
     color: orange;
 }
+
+/* 
+.productRating .rating:hover:nth-child(1) ~ .rating{
+    color:orange;
+}
+
+.productRating .rating:hover:nth-child(2) ~ .rating{
+    color:orange;
+}
+
+.productRating .rating:hover:nth-child(3) ~ .rating{
+    color:orange;
+}
+
+.productRating .rating:hover:nth-child(4) ~ .rating{
+    color:orange;
+}
+
+.productRating .rating:hover:nth-child(5) ~ .rating{
+    color:orange;
+} */
 
 .productRating .fa-star {
     padding-top: 0.1rem;
@@ -1048,7 +1087,7 @@ pre {
 
 .myAccount-features {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1.2rem;
     box-sizing: border-box;
 }
@@ -1079,119 +1118,59 @@ pre {
 }
 
 .lessons {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    /* grid-row: auto auto auto; */
     border: 1px solid #ccc;
     padding: 1rem;
     margin-bottom: 30px;
 }
 
-.lessons input{
-    outline: none;
-    border: none;
+.lessons input {
     background: none;
+    border: none;
     border-bottom: 1px solid #ccc;
-    padding: 6px;
     color: white;
 }
 
-.lessons input::placeholder{
-    color: white;
+.lessons input::placeholder {
+    color: #ccc;
 }
 
-.lessons label{
-    color: black;
-    border-bottom: 1px solid #ccc;
+.edit-input-holder {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    /* background: red; */
 }
 
-.removal-labels-topic {
-    grid-row: 1/2;
-    grid-column: 2;
-    border-top: 1px solid #ccc;
+.edit-buttons-holder {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    margin-top: 10px;
 }
 
-.lesson-name {
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    grid-row: 2/3;
-    grid-column: 2;
-    padding: 0.2rem;
-    /* text-align: center; */
-}
-
-.removal-labels-price {
-    grid-row: 3/4;
-    grid-column: 2;
-}
-
-.lesson-price {
-    border-left: 1px solid #ccc;
-    grid-row: 4/5;
-    grid-column: 2;
-    padding: 0.2rem;
-    /* text-align: center; */
-}
-
-.removal-labels-locations {
-    grid-row: 5/6;
-    grid-column: 2;
-}
-
-.lesson-location {
-    grid-row: 6/7;
-    grid-column: 2;
-    border-left: 1px solid #ccc;
-    padding: 0.2rem;
-    /* text-align: center; */
-}
-
-.removal-labels-time {
-    grid-row: 7/8;
-    grid-column: 2;
-}
-
-.lesson-time {
-    grid-row: 8/9;
-    grid-column: 2;
-    /* text-align: center; */
-    border-left: 1px solid #ccc;
-}
-
-.removal-labels-duration{
-    grid-row: 9/10;
-    grid-column: 2;
-}
-
-.lesson-duration {
-    grid-row: 10/11;
-    grid-column: 2;
-    /* text-align: center; */
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-.remove-button, .edit-button{
-    grid-row: 1/11;
-    grid-column: 3;
-    outline: none;
+.edit-buttons-holder button {
     background: none;
     border: 1px solid #ccc;
+    color: #ccc;
+}
+
+
+.edit-buttons-holder button:hover {
+    background: white;
+    color: black;
 }
 
 .edit-button {
-    grid-column: 1;
+    grid-column: 1/2;
 }
 
-.save-button{
-    grid-row: 12;
-    grid-column: 1/4;
-    background: none;
-    outline: none;
-    border: 1px solid #ccc;
-    border-top: none;
-    padding: 5px;
+.save-button {
+    grid-column: 3/4;
+    grid-row: 1;
 }
+
+.remove-button {
+    grid-column: 5/6;
+}
+
 /* Footer */
 
 footer {
