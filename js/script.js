@@ -414,8 +414,7 @@ var ourProducts = new Vue({
     },
     methods: {
         likeProduct: function (index, prodID) {
-
-            console.log(index);
+            //if user isnt logged in then dont do this
             if (localStorage.getItem('currentUser') !== null) {
                 //Here we have to reformat the index because in our css
                 //we change the direction of the stars
